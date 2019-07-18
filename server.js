@@ -1,0 +1,37 @@
+const express = require('express');
+const _ = require('lodash');
+const path = require('path');
+const body_parser = require('body-parser');
+
+const app = express();
+const port = process.env.port || 3000;
+
+app.use(express.static(__dirname + '/public'));
+app.use(body_parser.json());
+
+app.get('/', (request, response) => {
+    response.sendFile(path.resolve(__dirname + '/pages/index.html'));
+});
+
+app.get('/index', (request, response) => {
+    response.sendFile(path.resolve(__dirname + '/pages/index.html'));
+});
+
+app.get('/about', (request, response) => {
+
+    response.sendFile(path.resolve(__dirname + '/pages/about.html'));
+});
+
+app.get('/contact', (request, response) => {
+
+    response.sendFile(path.resolve(__dirname + '/pages/contact.html'));
+});
+
+app.get('/post', (request, response) => {
+
+    response.sendFile(path.resolve(__dirname + '/pages/post.html'));
+});
+
+app.listen(port, () => {
+    console.log(`Connected to the server at port: ${port}.`);
+});

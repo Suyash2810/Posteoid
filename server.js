@@ -4,6 +4,18 @@ const path = require('path');
 const body_parser = require('body-parser');
 const hbs = require('hbs');
 
+// const {
+//     mongoose
+// } = require('./mongoose/mongoose');
+
+// const {
+//     Post
+// } = require('./models/post');
+
+const {
+    ObjectID
+} = require('mongodb');
+
 const app = express();
 const port = process.env.port || 3000;
 
@@ -14,7 +26,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 app.get('/', (request, response) => {
-    // response.sendFile(path.resolve(__dirname + '/pages/index.html'));
+
     response.render('index');
 });
 

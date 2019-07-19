@@ -2,6 +2,7 @@ const express = require('express');
 const _ = require('lodash');
 const path = require('path');
 const body_parser = require('body-parser');
+const hbs = require('hbs');
 
 const app = express();
 const port = process.env.port || 3000;
@@ -9,8 +10,12 @@ const port = process.env.port || 3000;
 app.use(express.static(__dirname + '/public'));
 app.use(body_parser.json());
 
+app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials');
+
 app.get('/', (request, response) => {
-    response.sendFile(path.resolve(__dirname + '/pages/index.html'));
+    // response.sendFile(path.resolve(__dirname + '/pages/index.html'));
+    response.render('index');
 });
 
 app.get('/index', (request, response) => {

@@ -49,6 +49,10 @@ app.get('/post', (request, response) => {
     response.sendFile(path.resolve(__dirname + '/pages/post.html'));
 });
 
+app.get('/post/new', (request, response) => {
+    response.render('create');
+})
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

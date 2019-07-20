@@ -63,10 +63,19 @@ app.post('/post/store', (request, response) => {
     let post = new Post(body);
 
     post.save().then(
-        (result) => {
-            console.log(result);
-        }
-    );
+            (result) => {
+                console.log(result);
+            },
+            (error) => {
+                response.status(404).send(error);
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+                response.status(404).send(error);
+            }
+        );
 
     response.redirect('/');
 });

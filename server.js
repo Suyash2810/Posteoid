@@ -4,13 +4,13 @@ const path = require('path');
 const body_parser = require('body-parser');
 const hbs = require('hbs');
 
-// const {
-//     mongoose
-// } = require('./mongoose/mongoose');
+const {
+    mongoose
+} = require('./mongoose/mongoose');
 
-// const {
-//     Post
-// } = require('./models/post');
+const {
+    Post
+} = require('./models/post');
 
 const {
     ObjectID
@@ -21,13 +21,16 @@ const port = process.env.port || 3000;
 
 app.use(express.static(__dirname + '/public'));
 app.use(body_parser.json());
+app.use(body_parser.urlencoded({
+    extended: true
+}))
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-app.get('/', (request, response) => {
-
-    response.render('index');
+app.get('/', async (request, response) => {
+    let data = await Post.find({});
+    response.render('index', data);
 });
 
 app.get('/index', (request, response) => {
@@ -51,7 +54,22 @@ app.get('/post', (request, response) => {
 
 app.get('/post/new', (request, response) => {
     response.render('create');
-})
+});
+
+app.post('/post/store', (request, response) => {
+
+    console.log(request.body);
+    let body = _.pick(request.body, ['title', 'description', 'content']);
+    let post = new Post(body);
+
+    post.save().then(
+        (result) => {
+            console.log(result);
+        }
+    );
+
+    response.redirect('/');
+});
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

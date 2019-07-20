@@ -1,3 +1,5 @@
+require('./configuration/config');
+
 const express = require('express');
 const _ = require('lodash');
 const path = require('path');
@@ -58,28 +60,26 @@ app.get('/post/new', (request, response) => {
 
 app.post('/post/store', (request, response) => {
 
-    console.log(request.body);
     let body = _.pick(request.body, ['title', 'description', 'content']);
     let post = new Post(body);
 
     post.save().then(
-            (result) => {
-                console.log(result);
-            },
-            (error) => {
-                response.status(404).send(error);
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error);
-                response.status(404).send(error);
-            }
-        );
+        (result) => {
+            response.status(200).send(result);
+        }
+    ).catch(
+        (error) => {
+            response.status(404).send(error);
+        }
+    );
 
-    response.redirect('/');
+    response.redirect('/'); //rectify redirect situation.
 });
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });
+
+module.exports = {
+    app
+}

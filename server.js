@@ -61,24 +61,6 @@ app.get('/post/new', (request, response) => {
     response.render('create');
 });
 
-// app.post('/post/store', (request, response) => {
-
-//     let body = _.pick(request.body, ['username', 'title', 'description', 'content']);
-//     let post = new Post(body);
-
-//     post.save().then(
-//         (result) => {
-//             response.status(200).send(result);
-//         }
-//     ).catch(
-//         (error) => {
-//             response.status(404).send(error);
-//         }
-//     );
-
-//     response.redirect('/'); //rectify redirect situation.
-// });
-
 app.post("/post/store", (req, res) => {
     const {
         image

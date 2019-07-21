@@ -32,6 +32,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.get('/', async (request, response) => {
     let data = await Post.find({});
+    console.log(data.length);
     response.render('index', data);
 });
 
@@ -60,7 +61,7 @@ app.get('/post/new', (request, response) => {
 
 app.post('/post/store', (request, response) => {
 
-    let body = _.pick(request.body, ['title', 'description', 'content']);
+    let body = _.pick(request.body, ['username', 'title', 'description', 'content']);
     let post = new Post(body);
 
     post.save().then(
@@ -75,6 +76,16 @@ app.post('/post/store', (request, response) => {
 
     response.redirect('/'); //rectify redirect situation.
 });
+
+app.get('/post/:id', async (request, response) => {
+
+    let post = await Post.findById(request.params.id);
+    response.render('post', {
+        post
+    });
+});
+
+
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

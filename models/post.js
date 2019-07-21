@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const postSchema = new mongoose.Schema({
     title: {
@@ -12,6 +13,14 @@ const postSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: String,
+        default: moment().format("MMM Do YY").toString()
     }
 });
 

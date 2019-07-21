@@ -5,6 +5,7 @@ const _ = require('lodash');
 const path = require('path');
 const body_parser = require('body-parser');
 const hbs = require('hbs');
+const fileUpload = require('express-fileupload');
 
 const {
     mongoose
@@ -21,11 +22,12 @@ const {
 const app = express();
 const port = process.env.port || 3000;
 
+app.use(fileUpload());
 app.use(express.static(__dirname + '/public'));
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
     extended: true
-}))
+}));
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -59,22 +61,55 @@ app.get('/post/new', (request, response) => {
     response.render('create');
 });
 
-app.post('/post/store', (request, response) => {
+// app.post('/post/store', (request, response) => {
 
-    let body = _.pick(request.body, ['username', 'title', 'description', 'content']);
-    let post = new Post(body);
+//     let body = _.pick(request.body, ['username', 'title', 'description', 'content']);
+//     let post = new Post(body);
 
-    post.save().then(
-        (result) => {
-            response.status(200).send(result);
+//     post.save().then(
+//         (result) => {
+//             response.status(200).send(result);
+//         }
+//     ).catch(
+//         (error) => {
+//             response.status(404).send(error);
+//         }
+//     );
+
+//     response.redirect('/'); //rectify redirect situation.
+// });
+
+app.post("/post/store", (req, res) => {
+    const {
+        image
+    } = req.files
+
+    image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
+        // Post.create({
+        //     ...req.body,
+        //     image: `/posts/${image.name}`
+        // }, (error, post) => {
+        //     res.redirect('/');
+        // });
+
+        let body = {
+            ...req.body,
+            image: `/posts/${image.name}`
         }
-    ).catch(
-        (error) => {
-            response.status(404).send(error);
-        }
-    );
+        let post = new Post(body);
 
-    response.redirect('/'); //rectify redirect situation.
+        post.save().then(
+            (result) => {
+                res.status(200).send(result);
+            }
+        ).catch(
+            (error) => {
+                res.status(404).send(error);
+            }
+        );
+
+        res.redirect('/'); //rectify redirect situation.
+    })
 });
 
 app.get('/post/:id', async (request, response) => {

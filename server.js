@@ -16,6 +16,10 @@ const {
 } = require('./models/post');
 
 const {
+    User
+} = require("./models/user");
+
+const {
     ObjectID
 } = require('mongodb');
 
@@ -105,7 +109,24 @@ app.get('/post/:id', async (request, response) => {
 app.get('/auth/register', (request, response) => {
 
     response.render('register.hbs');
-})
+});
+
+
+app.post('/users/register', (request, response) => {
+
+    let userData = _.pick(request.body, ['username', 'email', 'password']);
+
+    let user = new User(userData);
+    user.save().then(
+        (result) => {
+            return response.redirect('/');
+        }
+    ).catch(
+        (error) => {
+            return response.redirect('/auth/register');
+        }
+    )
+});
 
 
 

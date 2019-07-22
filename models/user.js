@@ -1,9 +1,7 @@
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 
 var userSchema = new mongoose.Schema({
@@ -28,16 +26,21 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', function (next) {
-
     var user = this;
 
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, function (err, hash) {
-            user.password = hash;
-        });
-    });
+    if (user.isModified('password')) {
 
-    next();
+        bcrypt.genSalt(10, (err, salt) => {
+
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                user.password = hash;
+                next();
+            });
+        });
+
+    } else {
+        next();
+    }
 });
 
 const User = mongoose.model('User', userSchema);

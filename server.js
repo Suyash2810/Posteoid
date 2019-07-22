@@ -102,6 +102,11 @@ app.get('/post/:id', async (request, response) => {
     });
 });
 
+app.get('/auth/register', (request, response) => {
+
+    response.render('register.hbs');
+})
+
 
 
 app.listen(port, () => {

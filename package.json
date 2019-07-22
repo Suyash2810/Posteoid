@@ -11,19 +11,22 @@
   "author": "Suyash Awasthi",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
     "express-generator": "^4.16.1",
     "hbs": "^4.0.4",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
     "mongodb": "^3.3.0-beta2",
     "mongoose": "^5.6.5",
     "nodemon": "^1.19.1",
     "path": "^0.12.7",
-    "startbootstrap-clean-blog": "^5.0.7"
+    "startbootstrap-clean-blog": "^5.0.7",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

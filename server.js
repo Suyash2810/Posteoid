@@ -129,6 +129,12 @@ app.post('/users/register', (request, response) => {
 });
 
 
+app.get('/auth/login', (request, response) => {
+
+    response.render('login.hbs');
+});
+
+
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

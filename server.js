@@ -135,6 +135,17 @@ app.get('/auth/login', (request, response) => {
 });
 
 
+app.post('/users/login', async (request, response) => {
+
+    let body = _.pick(request.body, ['email', 'password']);
+    var user = await User.findUserByEmailAndPassword(body.email, body.password);
+    console.log(user);
+    if (user) {
+        response.redirect('/');
+    } else {
+        response.redirect('/auth/login');
+    }
+});
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

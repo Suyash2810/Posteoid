@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
+const _ = require('lodash');
 
 
 var userSchema = new mongoose.Schema({
@@ -25,6 +26,14 @@ var userSchema = new mongoose.Schema({
     }
 });
 
+userSchema.methods.toJSON = function () {
+    var user = this;
+    var userObject = user.toObject();
+    var obj = _.pick(userObject, ['_id', 'email']);
+
+    return obj;
+}
+
 userSchema.pre('save', function (next) {
     var user = this;
 
@@ -42,6 +51,38 @@ userSchema.pre('save', function (next) {
         next();
     }
 });
+
+userSchema.statics.findUserByEmailAndPassword = function (email, password) {
+
+    var User = this;
+
+    return User.findOne({
+        email
+    }).then(
+        (user) => {
+            if (!user) {
+                return Promise.reject("User could not be found. Invalid Data.");
+            } else {
+
+                return new Promise(
+                    (resolve, reject) => {
+                        bcrypt.compare(password, user.password, (err, result) => {
+                            if (result) {
+                                resolve(user);
+                            } else {
+                                reject(err);
+                            }
+                        })
+                    }
+                )
+            }
+        }
+    ).catch(
+        (err) => {
+            return Promise.reject(err);
+        }
+    )
+}
 
 const User = mongoose.model('User', userSchema);
 

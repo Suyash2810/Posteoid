@@ -6,6 +6,10 @@ const path = require('path');
 const body_parser = require('body-parser');
 const hbs = require('hbs');
 const fileUpload = require('express-fileupload');
+const jwt = require('jsonwebtoken');
+const {
+    authentication
+} = require('./middleware/authentication');
 
 const {
     mongoose
@@ -33,13 +37,22 @@ app.use(body_parser.urlencoded({
     extended: true
 }));
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-app.get('/', async (request, response) => {
-    let data = await Post.find({});
-    console.log(data.length);
-    response.render('index', data);
+app.get('/', authentication, async (request, response) => {
+
+    if (request.user) {
+        let data = await Post.find({});
+        console.log(data.length);
+        response.render('index', data);
+    } else {
+        response.redirect('/auth/login');
+    }
+
 });
 
 app.get('/index', (request, response) => {
@@ -139,9 +152,23 @@ app.post('/users/login', async (request, response) => {
 
     let body = _.pick(request.body, ['email', 'password']);
     var user = await User.findUserByEmailAndPassword(body.email, body.password);
+
     console.log(user);
     if (user) {
+
+        let access = 'auth';
+
+        var token = jwt.sign({
+            _id: user._id.toHexString(),
+            access
+        }, process.env.JWT_SECRET).toString();
+
+        console.log(token);
+
+        response.cookie('authAccessJWT', token);
+
         response.redirect('/');
+
     } else {
         response.redirect('/auth/login');
     }

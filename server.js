@@ -132,13 +132,13 @@ app.get('/post/:id', authentication, async (request, response) => {
 
 });
 
-app.get('/auth/register', authentication, (request, response) => {
+app.get('/auth/register', (request, response) => {
 
     // let data = request.flash('signUpErrors');
-    if (!request.user) {
-        response.render('register.hbs');
-    } else {
+    if (request.cookies.authAccessJWT) {
         response.redirect('/');
+    } else {
+        response.render('register.hbs');
     }
 });
 
@@ -165,12 +165,12 @@ app.post('/users/register', (request, response) => {
 });
 
 
-app.get('/auth/login', authentication, (request, response) => {
+app.get('/auth/login', (request, response) => {
 
-    if (!request.user) {
-        response.render('login.hbs');
-    } else {
+    if (request.cookies.authAccessJWT) {
         response.redirect('/');
+    } else {
+        response.render('login.hbs');
     }
 });
 
@@ -200,6 +200,12 @@ app.post('/users/login', async (request, response) => {
         response.redirect('/auth/login');
     }
 });
+
+app.get('/user/logout', (request, response) => {
+
+    response.clearCookie('authAccessJWT');
+    response.redirect('/auth/login');
+})
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

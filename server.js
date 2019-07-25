@@ -132,9 +132,14 @@ app.get('/post/:id', authentication, async (request, response) => {
 
 });
 
-app.get('/auth/register', (request, response) => {
+app.get('/auth/register', authentication, (request, response) => {
 
-    response.render('register.hbs');
+    // let data = request.flash('signUpErrors');
+    if (!request.user) {
+        response.render('register.hbs');
+    } else {
+        response.redirect('/');
+    }
 });
 
 
@@ -149,15 +154,24 @@ app.post('/users/register', (request, response) => {
         }
     ).catch(
         (error) => {
+
+            // if (error) {
+            //     const registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
+            //     request.flash('signUpErrors', registrationErrors);
+            // }
             return response.redirect('/auth/register');
         }
     )
 });
 
 
-app.get('/auth/login', (request, response) => {
+app.get('/auth/login', authentication, (request, response) => {
 
-    response.render('login.hbs');
+    if (!request.user) {
+        response.render('login.hbs');
+    } else {
+        response.redirect('/');
+    }
 });
 
 

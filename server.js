@@ -74,49 +74,62 @@ app.get('/post', (request, response) => {
     response.sendFile(path.resolve(__dirname + '/pages/post.html'));
 });
 
-app.get('/post/new', (request, response) => {
-    response.render('create');
+app.get('/post/new', authentication, (request, response) => {
+    if (request.user) {
+        response.render('create');
+    } else {
+        response.redirect('/auth/login');
+    }
 });
 
-app.post("/post/store", (req, res) => {
-    const {
-        image
-    } = req.files
+app.post("/post/store", authentication, (request, response) => {
+    if (request.user) {
+        const {
+            image
+        } = request.files
 
-    image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
-        // Post.create({
-        //     ...req.body,
-        //     image: `/posts/${image.name}`
-        // }, (error, post) => {
-        //     res.redirect('/');
-        // });
+        image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
+            // Post.create({
+            //     ...req.body,
+            //     image: `/posts/${image.name}`
+            // }, (error, post) => {
+            //     res.redirect('/');
+            // });
 
-        let body = {
-            ...req.body,
-            image: `/posts/${image.name}`
-        }
-        let post = new Post(body);
-
-        post.save().then(
-            (result) => {
-                res.status(200).send(result);
+            let body = {
+                ...request.body,
+                image: `/posts/${image.name}`
             }
-        ).catch(
-            (error) => {
-                res.status(404).send(error);
-            }
-        );
+            let post = new Post(body);
 
-        res.redirect('/'); //rectify redirect situation.
-    })
+            post.save().then(
+                (result) => {
+                    response.status(200).send(result);
+                }
+            ).catch(
+                (error) => {
+                    response.status(404).send(error);
+                }
+            );
+
+            response.redirect('/'); //rectify redirect situation.
+        })
+    } else {
+        response.redirect('/auth/login');
+    }
 });
 
-app.get('/post/:id', async (request, response) => {
+app.get('/post/:id', authentication, async (request, response) => {
 
-    let post = await Post.findById(request.params.id);
-    response.render('post', {
-        post
-    });
+    if (request.user) {
+        let post = await Post.findById(request.params.id);
+        response.render('post', {
+            post
+        });
+    } else {
+        response.redirect('/auth/login');
+    }
+
 });
 
 app.get('/auth/register', (request, response) => {
@@ -132,7 +145,7 @@ app.post('/users/register', (request, response) => {
     let user = new User(userData);
     user.save().then(
         (result) => {
-            return response.redirect('/');
+            return response.redirect('/auth/login');
         }
     ).catch(
         (error) => {

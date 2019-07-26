@@ -27,6 +27,8 @@ const {
     ObjectID
 } = require('mongodb');
 
+var Message = require('js-message');
+
 const app = express();
 const port = process.env.port || 3000;
 
@@ -138,7 +140,37 @@ app.get('/auth/register', (request, response) => {
     if (request.cookies.authAccessJWT) {
         response.redirect('/');
     } else {
-        response.render('register.hbs');
+        let errorData = request.cookies.errors;
+
+        console.log(errorData + " " + typeof (errorData));
+        // errors = JSON.parse(errorData);
+        // let username, email, password;
+        // if (errorData.username) {
+        //     username = errorData.username;
+        // }
+        // if (errorData.email) {
+        //     email = errorData.email;
+        // }
+        // if (errorData.password) {
+        //     password = errorData.password;
+        // }
+
+        // let errobj = {
+        //     username,
+        //     email,
+        //     password
+        // }
+
+        let errobj = {};
+        Object.keys(errorData).forEach(
+            (key) => {
+                errobj[key] = errorData[key];
+            }
+        );
+
+        response.render('register.hbs', {
+            errobj
+        });
     }
 });
 
@@ -155,10 +187,24 @@ app.post('/users/register', (request, response) => {
     ).catch(
         (error) => {
 
-            // if (error) {
-            //     const registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
-            //     request.flash('signUpErrors', registrationErrors);
-            // }
+            if (error) {
+                // console.log(Object.keys(error.errors));
+                let errObj = {};
+                Object.keys(error.errors).forEach(
+                    (key) => {
+                        errObj[key] = error.errors[key].message;
+                    }
+                );
+
+                var registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
+
+                var errorMessage = new Message;
+                errorMessage.type = 'message or event type';
+                errorMessage.data.errors = registrationErrors;
+                console.log("\n " + errorMessage.JSON);
+
+                response.cookie('errors', errObj);
+            }
             return response.redirect('/auth/register');
         }
     )

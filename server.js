@@ -142,31 +142,15 @@ app.get('/auth/register', (request, response) => {
     } else {
         let errorData = request.cookies.errors;
 
-        console.log(errorData + " " + typeof (errorData));
-        // errors = JSON.parse(errorData);
-        // let username, email, password;
-        // if (errorData.username) {
-        //     username = errorData.username;
-        // }
-        // if (errorData.email) {
-        //     email = errorData.email;
-        // }
-        // if (errorData.password) {
-        //     password = errorData.password;
-        // }
-
-        // let errobj = {
-        //     username,
-        //     email,
-        //     password
-        // }
-
         let errobj = {};
-        Object.keys(errorData).forEach(
-            (key) => {
-                errobj[key] = errorData[key];
-            }
-        );
+        if (errorData) {
+            Object.keys(errorData).forEach(
+                (key) => {
+                    errobj[key] = errorData[key];
+                }
+            );
+        }
+
 
         response.render('register.hbs', {
             errobj

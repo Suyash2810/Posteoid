@@ -47,14 +47,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
-                {{errobj.email}}
-                {{errobj.username}}
-                {{errobj.password}}
+                {{#if errobj}}
+                {{#if errobj.username}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{errobj.username}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{#if errobj.email}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{errobj.email}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{#if errobj.password}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{errobj.password}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{/if}}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 col-md-offset-2">
                 <form action="/users/register" method="POST" encType="multipart/form-data">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">

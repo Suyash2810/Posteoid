@@ -247,7 +247,9 @@ app.post('/contact/add', async (request, response) => {
     var contact = new Contact(body);
 
     let result = await contact.save();
-    console.log(result);
+    if (!result) {
+        response.redirect('/contact');
+    }
     response.redirect('/index');
 });
 

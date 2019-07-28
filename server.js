@@ -239,7 +239,17 @@ app.get('/user/logout', (request, response) => {
 
     response.clearCookie('authAccessJWT');
     response.redirect('/auth/login');
-})
+});
+
+app.post('/contact/add', async (request, response) => {
+
+    let body = _.pick(request.body, ['name', 'email', 'phone', 'message']);
+    var contact = new Contact(body);
+
+    let result = await contact.save();
+    console.log(result);
+    response.redirect('/index');
+});
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

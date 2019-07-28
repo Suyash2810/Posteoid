@@ -76,11 +76,10 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as
+        <p style="color:grey;">Want to get in touch? Fill out the form below to send me a message and I will get back to
+          you as soon as
           possible!</p>
-        <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-        <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-        <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+
         <form action="/contact/add" method="POST" encType="multipart/form-data">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
@@ -103,12 +102,13 @@
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Message</label>
-              <input type="tel" name="message" placeholder="Message" class="form-control">
+              <textarea name="message" cols="30" rows="10" class="form-control"
+                placeholder="Enter Your Message."></textarea>
             </div>
           </div>
           <br>
           <div class="form-group my-4 text-center">
-            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-primary" type="submit">Send</button>
           </div>
         </form>
       </div>

@@ -24,6 +24,10 @@ const {
 } = require("./models/user");
 
 const {
+    Contact
+} = require('./models/contacts');
+
+const {
     ObjectID
 } = require('mongodb');
 

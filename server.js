@@ -56,7 +56,7 @@ app.get('/', authentication, async (request, response) => {
         console.log(data.length);
         response.render('index', data);
     } else {
-        response.redirect('/auth/login');
+        response.redirect('/index');
     }
 
 });

@@ -11,7 +11,7 @@ var authentication = (request, response, next) => {
     if (!authToken) {
         // response.status(401).send(new Error("User is not authorized. Token does not exist."));
         // request.error = new Error("User is not authorized. Token does not exist.");
-        response.redirect('/auth/login');
+        response.redirect('/index');
         next();
     } else {
 
@@ -21,7 +21,7 @@ var authentication = (request, response, next) => {
             response.clearCookie('authAccessJWT');
             // response.send(new Error("Missing or unauthorized cookie."));
             // request.error = new Error("Missing or unauthorized cookie.");
-            response.redirect('/auth/login');
+            response.redirect('/index');
             next();
         } else {
 

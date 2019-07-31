@@ -253,6 +253,25 @@ app.post('/contact/add', async (request, response) => {
     response.redirect('/index');
 });
 
+app.get('/delete/:id', authentication, async (request, response) => {
+
+    let id = request.params.id;
+    if (request.user) {
+        Post.findByIdAndRemove(id).then(
+            (result) => {
+                response.redirect('/');
+            }
+        ).catch(
+            (err) => {
+                if (err) {
+                    response.redirect(`/post/${id}`);
+                }
+            }
+        )
+    }
+
+});
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

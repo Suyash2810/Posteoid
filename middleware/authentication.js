@@ -6,7 +6,6 @@ const {
 var authentication = (request, response, next) => {
 
     let authToken = request.cookies.authAccessJWT;
-    console.log(authToken);
 
     if (!authToken) {
         // response.status(401).send(new Error("User is not authorized. Token does not exist."));

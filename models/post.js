@@ -21,6 +21,10 @@ const postSchema = new mongoose.Schema({
     image: {
         type: String
     },
+    creator_id: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: String,
         default: moment().format("MMM Do YY").toString()

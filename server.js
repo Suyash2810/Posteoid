@@ -91,7 +91,6 @@ app.get('/post/new', authentication, (request, response) => {
 app.post("/post/store", authentication, (request, response) => {
     if (request.user) {
 
-
         // const {
         //     image
         // } = request.files
@@ -127,6 +126,7 @@ app.post("/post/store", authentication, (request, response) => {
 
                 let body = {
                     ...request.body,
+                    creator_id: request.user._id.toString(),
                     image: `/posts/${image.name}`
                 }
                 let post = new Post(body);
@@ -146,7 +146,8 @@ app.post("/post/store", authentication, (request, response) => {
         } else {
 
             let body = {
-                ...request.body
+                ...request.body,
+                creator_id: request.user._id.toString()
             }
             let post = new Post(body);
 
@@ -298,18 +299,31 @@ app.post('/contact/add', async (request, response) => {
 app.get('/delete/:id', authentication, async (request, response) => {
 
     let id = request.params.id;
+
     if (request.user) {
-        Post.findByIdAndRemove(id).then(
-            (result) => {
-                response.redirect('/');
-            }
-        ).catch(
-            (err) => {
-                if (err) {
-                    response.redirect(`/post/${id}`);
+        let userId = request.user._id.toString();
+        let post = await Post.findById(id);
+        let postCreatorId = post.creator_id.toString();
+        let matchCheck = _.isEqual(userId, postCreatorId);
+        // console.log(typeof (userId) + " ----- " + typeof (id));
+
+        if (matchCheck) {
+            Post.findByIdAndRemove(id).then(
+                (result) => {
+                    response.redirect('/');
                 }
-            }
-        )
+            ).catch(
+                (err) => {
+                    if (err) {
+                        response.redirect(`/post/${id}`);
+                    }
+                }
+            )
+        } else {
+            response.redirect(`/post/${id}`);
+        }
+    } else {
+        response.redirect(`/post/${id}`);
     }
 
 });

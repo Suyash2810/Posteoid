@@ -90,21 +90,63 @@ app.get('/post/new', authentication, (request, response) => {
 
 app.post("/post/store", authentication, (request, response) => {
     if (request.user) {
-        const {
-            image
-        } = request.files
 
-        image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
-            // Post.create({
-            //     ...req.body,
-            //     image: `/posts/${image.name}`
-            // }, (error, post) => {
-            //     res.redirect('/');
-            // });
+
+        // const {
+        //     image
+        // } = request.files
+
+        // image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
+
+        //     let body = {
+        //         ...request.body,
+        //         image: `/posts/${image.name}`
+        //     }
+        //     let post = new Post(body);
+
+        //     post.save().then(
+        //         (result) => {
+        //             response.status(200).send(result);
+        //         }
+        //     ).catch(
+        //         (error) => {
+        //             response.status(404).send(error);
+        //         }
+        //     );
+
+        //     response.redirect('/'); //rectify redirect situation.
+        // })
+
+        if (request.files) {
+
+            const {
+                image
+            } = request.files
+
+            image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
+
+                let body = {
+                    ...request.body,
+                    image: `/posts/${image.name}`
+                }
+                let post = new Post(body);
+
+                post.save().then(
+                    (result) => {
+                        response.status(200).send(result);
+                    }
+                ).catch(
+                    (error) => {
+                        response.status(404).send(error);
+                    }
+                );
+
+                response.redirect('/');
+            })
+        } else {
 
             let body = {
-                ...request.body,
-                image: `/posts/${image.name}`
+                ...request.body
             }
             let post = new Post(body);
 
@@ -118,8 +160,8 @@ app.post("/post/store", authentication, (request, response) => {
                 }
             );
 
-            response.redirect('/'); //rectify redirect situation.
-        })
+            response.redirect('/');
+        }
     } else {
         response.redirect('/auth/login');
     }
@@ -270,6 +312,10 @@ app.get('/delete/:id', authentication, async (request, response) => {
         )
     }
 
+});
+
+hbs.registerHelper('json', function (context) {
+    return JSON.stringify(context);
 });
 
 app.listen(port, () => {

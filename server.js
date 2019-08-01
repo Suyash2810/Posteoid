@@ -53,7 +53,6 @@ app.get('/', authentication, async (request, response) => {
 
     if (request.user) {
         let data = await Post.find({});
-        console.log(data.length);
         response.render('index', data);
     } else {
         response.redirect('/index');
@@ -326,10 +325,6 @@ app.get('/delete/:id', authentication, async (request, response) => {
         response.redirect(`/post/${id}`);
     }
 
-});
-
-hbs.registerHelper('json', function (context) {
-    return JSON.stringify(context);
 });
 
 app.listen(port, () => {

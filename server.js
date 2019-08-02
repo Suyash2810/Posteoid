@@ -31,6 +31,8 @@ const {
     ObjectID
 } = require('mongodb');
 
+const fs = require('fs');
+
 var Message = require('js-message');
 
 const app = express();
@@ -256,7 +258,6 @@ app.post('/users/login', async (request, response) => {
     let body = _.pick(request.body, ['email', 'password']);
     var user = await User.findUserByEmailAndPassword(body.email, body.password);
 
-    console.log(user);
     if (user) {
 
         let access = 'auth';
@@ -266,9 +267,11 @@ app.post('/users/login', async (request, response) => {
             access
         }, process.env.JWT_SECRET).toString();
 
-        console.log(token);
 
         response.cookie('authAccessJWT', token);
+
+        let log = user.username + " logged in at time : " + new Date().toString();
+        fs.appendFileSync('./logs/login.log', log);
 
         response.redirect('/');
 

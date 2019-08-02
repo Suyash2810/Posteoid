@@ -214,7 +214,7 @@ app.post('/users/register', (request, response) => {
     let user = new User(userData);
     user.save().then(
         (result) => {
-            let log = result.username + " -- " + result.email + " registered at time: " + new Date().toString();
+            let log = result.username + " -- " + result.email + " registered at time: " + new Date().toString() + "\n";
             fs.appendFileSync('./logs/register.log', log);
             return response.redirect('/auth/login');
         }
@@ -250,36 +250,53 @@ app.get('/auth/login', (request, response) => {
     if (request.cookies.authAccessJWT) {
         response.redirect('/');
     } else {
-        response.render('login.hbs');
+        let errData = {};
+        let errObj = request.cookies.loginErr;
+
+        if (errObj) {
+            Object.keys(errObj).forEach(key => {
+                errData[key] = errObj[key];
+            });
+        }
+
+        response.render('login.hbs', {
+            errData
+        });
     }
 });
 
 
-app.post('/users/login', async (request, response) => {
+app.post('/users/login', (request, response) => {
 
     let body = _.pick(request.body, ['email', 'password']);
-    var user = await User.findUserByEmailAndPassword(body.email, body.password);
+    User.findUserByEmailAndPassword(body.email, body.password).then(
+        (user) => {
+            let access = 'auth';
 
-    if (user) {
-
-        let access = 'auth';
-
-        var token = jwt.sign({
-            _id: user._id.toHexString(),
-            access
-        }, process.env.JWT_SECRET).toString();
+            var token = jwt.sign({
+                _id: user._id.toHexString(),
+                access
+            }, process.env.JWT_SECRET).toString();
 
 
-        response.cookie('authAccessJWT', token);
+            response.cookie('authAccessJWT', token);
 
-        let log = user.username + " logged in at time : " + new Date().toString();
-        fs.appendFileSync('./logs/login.log', log);
+            let log = "\n" + user.username + " -- " + user.email + " logged in at time : " + new Date().toString();
+            fs.appendFileSync('./logs/login.log', log);
+            response.clearCookie('loginErr');
+            response.redirect('/');
+        }
+    ).catch(
+        (error) => {
+            let errObj = {
+                err: "The email or password entered is incorrect."
+            }
 
-        response.redirect('/');
+            response.cookie('loginErr', errObj);
 
-    } else {
-        response.redirect('/auth/login');
-    }
+            response.redirect('/auth/login');
+        }
+    );
 });
 
 app.get('/user/logout', (request, response) => {

@@ -214,6 +214,8 @@ app.post('/users/register', (request, response) => {
     let user = new User(userData);
     user.save().then(
         (result) => {
+            let log = result.username + " -- " + result.email + " registered at time: " + new Date().toString();
+            fs.appendFileSync('./logs/register.log', log);
             return response.redirect('/auth/login');
         }
     ).catch(

@@ -64,6 +64,8 @@ app.get('/', authentication, async (request, response) => {
 });
 
 app.get('/index', (request, response) => {
+    response.clearCookie('loginErr');
+    response.clearCookie('errors');
     response.sendFile(path.resolve(__dirname + '/pages/index.html'));
 });
 

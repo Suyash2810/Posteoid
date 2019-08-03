@@ -18,8 +18,10 @@
     {{!--
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link
+        href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
         rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
@@ -66,12 +68,26 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3" style="text-align:center;">
-                        <a href="/delete/{{post._id}}" style="text-decoration:none;" class="btn btn-primary"><i class="fa fa-trash"></i>
+                        <a href="/delete/{{post._id}}" style="text-decoration:none;" class="btn btn-primary"><i
+                                class="fa fa-trash"></i>
                             Delete Post.</a>
                         <br><br>
                         <a href="/" style="text-decoration:none;"><i class="fa fa-arrow-left"></i> Back to Home.</a>
                     </div>
                 </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {{#if DelObj}}
+                {{#if DelObj.err}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{DelObj.err}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{/if}}
             </div>
         </div>
     </div>

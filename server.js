@@ -55,6 +55,7 @@ app.get('/', authentication, async (request, response) => {
 
     if (request.user) {
         let data = await Post.find({});
+        response.clearCookie('deleteError');
         response.render('index', data);
     } else {
         response.redirect('/index');
@@ -173,8 +174,22 @@ app.get('/post/:id', authentication, async (request, response) => {
 
     if (request.user) {
         let post = await Post.findById(request.params.id);
+
+        let delobj = request.cookies.deleteError;
+
+        let DelObj = {};
+
+        if (delobj) {
+            Object.keys(delobj).forEach(
+                (key) => {
+                    DelObj[key] = delobj[key];
+                }
+            );
+        }
+
         response.render('post', {
-            post
+            post,
+            DelObj
         });
     } else {
         response.redirect('/auth/login');
@@ -336,11 +351,23 @@ app.get('/delete/:id', authentication, async (request, response) => {
             ).catch(
                 (err) => {
                     if (err) {
+                        let delError = {
+                            err: "The post can only be deleted by the creator."
+                        }
+
+                        response.cookie('deleteError', delError);
+
                         response.redirect(`/post/${id}`);
                     }
                 }
             )
         } else {
+            let delError = {
+                err: "The post can only be deleted by the creator."
+            }
+
+            response.cookie('deleteError', delError);
+
             response.redirect(`/post/${id}`);
         }
     } else {

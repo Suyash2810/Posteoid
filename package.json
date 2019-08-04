@@ -14,6 +14,7 @@
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "cheerio": "^1.0.0-rc.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
@@ -29,6 +30,8 @@
     "mongoose": "^5.6.5",
     "nodemon": "^1.19.1",
     "path": "^0.12.7",
+    "pdfmake": "^0.1.58",
+    "request": "^2.88.0",
     "startbootstrap-clean-blog": "^5.0.7",
     "validator": "^11.1.0"
   },

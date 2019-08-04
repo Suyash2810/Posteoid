@@ -34,6 +34,9 @@ const {
 const fs = require('fs');
 
 var Message = require('js-message');
+const cheerio = require('cheerio');
+const request = require('request');
+const pdfMakePrinter = require('pdfmake/src/printer');
 
 const app = express();
 const port = process.env.port || 3000;
@@ -375,6 +378,54 @@ app.get('/delete/:id', authentication, async (request, response) => {
     } else {
         response.redirect(`/post/${id}`);
     }
+
+});
+
+app.get('/post/pdf/:id', (req, res) => {
+
+    let id = req.params.id;
+
+    function generatePdf(docDefinition, callback) {
+        try {
+            const fontDescriptors = {
+                Roboto: {
+                    normal: 'public/fonts/Roboto-Regular.ttf',
+                    bold: 'public/fonts/Roboto-Medium.ttf',
+                    italics: 'public/fonts/Roboto-Italic.ttf',
+                    bolditalics: 'public/fonts/Roboto-MediumItalic.ttf'
+                }
+            };
+
+            const printer = new pdfMakePrinter(fontDescriptors);
+            const doc = printer.createPdfKitDocument(docDefinition);
+
+            let chunks = [];
+
+            doc.on('data', (chunk) => {
+                chunks.push(chunk);
+            });
+
+            doc.on('end', () => {
+                callback(Buffer.concat(chunks));
+            });
+
+            doc.end();
+
+        } catch (err) {
+            throw (err);
+        }
+    };
+
+
+    const docDefinition = {
+        content: ['This is some sample data that will be entered into the pdf.']
+    };
+
+    generatePdf(docDefinition, (result) => {
+        res.setHeader('Content-Type', 'application/pdf');
+        res.send(result);
+    });
+
 
 });
 

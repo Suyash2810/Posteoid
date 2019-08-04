@@ -37,6 +37,7 @@ var Message = require('js-message');
 const cheerio = require('cheerio');
 const request = require('request');
 const pdfMakePrinter = require('pdfmake/src/printer');
+const striptags = require('striptags');
 
 const app = express();
 const port = process.env.port || 3000;
@@ -439,7 +440,7 @@ app.get('/post/pdf/:id', async (req, res) => {
                 style: 'description'
             },
             {
-                text: post.content,
+                text: striptags(post.content),
                 style: 'content'
             }
         ],

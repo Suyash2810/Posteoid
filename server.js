@@ -381,9 +381,11 @@ app.get('/delete/:id', authentication, async (request, response) => {
 
 });
 
-app.get('/post/pdf/:id', (req, res) => {
+app.get('/post/pdf/:id', async (req, res) => {
 
     let id = req.params.id;
+
+    let post = await Post.findById(id);
 
     function generatePdf(docDefinition, callback) {
         try {
@@ -418,7 +420,60 @@ app.get('/post/pdf/:id', (req, res) => {
 
 
     const docDefinition = {
-        content: ['This is some sample data that will be entered into the pdf.']
+        content: [{
+                image: `public${post.image}`,
+                width: 600,
+                height: 300,
+                style: 'image'
+            },
+            {
+                text: post.title,
+                style: 'title'
+            },
+            {
+                text: `By - ${post.username}`,
+                style: 'username'
+            },
+            {
+                text: post.description,
+                style: 'description'
+            },
+            {
+                text: post.content,
+                style: 'content'
+            }
+        ],
+
+        styles: {
+            image: {
+                margin: 0,
+                marginTop: 0,
+                alignment: 'center'
+            },
+            title: {
+                marginTop: 20,
+                fontSize: 22,
+                bold: true,
+                alignment: 'center'
+            },
+            username: {
+                marginTop: 5,
+                fontSize: 15,
+                alignment: 'center'
+            },
+            description: {
+                marginTop: 50,
+                fontSize: 16,
+                bold: false,
+                alignment: 'center'
+            },
+            content: {
+                marginTop: 70,
+                alignment: 'center',
+                color: 'grey',
+                fontSize: 14
+            }
+        }
     };
 
     generatePdf(docDefinition, (result) => {

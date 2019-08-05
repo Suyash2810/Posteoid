@@ -629,6 +629,14 @@ app.get('/about/pdf', async (req, res) => {
     });
 });
 
+app.get('/edit', authentication, (request, response) => {
+    if (request.user) {
+        response.render('edit.hbs');
+    } else {
+        response.redirect('/auth/login');
+    }
+});
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

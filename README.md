@@ -1,4 +1,4 @@
 # BlogIT
-provide functionality for editing a particular post
+provide functionality for editing a particular post - in progress
 Handle the pagination or pager
-implement web scraping in about me page
+On entering no data create posts redirects to '/' through /auth/login

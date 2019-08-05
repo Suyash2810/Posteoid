@@ -16,6 +16,7 @@ describe("Post Model test", () => {
                 expect(error.errors.description).to.exist;
                 expect(error.errors.username).to.exist;
                 expect(error.errors.content).to.exist;
+                expect(error.errors.creator_id).to.exist;
                 done();
             }
         );
@@ -37,13 +38,15 @@ describe("Post Model test", () => {
             title: 'Foo',
             description: 'Foofoo',
             content: 'foofoofoo',
-            username: 'fofo'
+            username: 'fofo',
+            creator_id: 'sample_id'
         });
 
         expect(post).to.have.property('title').to.equal('Foo');
         expect(post).to.have.property('description').to.equal('Foofoo');
         expect(post).to.have.property('content').to.equal('foofoofoo');
         expect(post).to.have.property('username').to.equal('fofo');
+        expect(post).to.have.property('creator_id').to.equal('sample_id');
     });
 
 });

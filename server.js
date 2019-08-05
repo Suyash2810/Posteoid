@@ -485,6 +485,150 @@ app.get('/post/pdf/:id', async (req, res) => {
 
 });
 
+app.get('/about/pdf', async (req, res) => {
+
+    await request('http://localhost:3000/about', (err, response, html) => {
+
+        if (!err) {
+
+            var $ = cheerio.load(html);
+
+            var heading, subHeading, para1, para2, para3;
+
+            var jsonData = {
+                heading: "",
+                subHeading: "",
+                para1: "",
+                para2: "",
+                para3: ""
+            }
+
+
+            $('.page-heading').filter(function () {
+
+                var data = $(this);
+
+                heading = data.children().first().text();
+
+                jsonData.heading = heading;
+
+                subHeading = data.children().last().text();
+                jsonData.subHeading = subHeading;
+            });
+
+            $('#about_content').filter(function () {
+
+                let data = $(this);
+
+                para1 = data.children().eq(0).text();
+                para2 = data.children().eq(1).text();
+                para3 = data.children().eq(2).text();
+
+                jsonData.para1 = para1;
+                jsonData.para2 = para2;
+                jsonData.para3 = para3;
+            });
+
+            function generatePdf(docDefinition, callback) {
+                try {
+                    const fontDescriptors = {
+                        Roboto: {
+                            normal: 'public/fonts/Roboto-Regular.ttf',
+                            bold: 'public/fonts/Roboto-Medium.ttf',
+                            italics: 'public/fonts/Roboto-Italic.ttf',
+                            bolditalics: 'public/fonts/Roboto-MediumItalic.ttf'
+                        }
+                    };
+
+                    const printer = new pdfMakePrinter(fontDescriptors);
+                    const doc = printer.createPdfKitDocument(docDefinition);
+
+                    let chunks = [];
+
+                    doc.on('data', (chunk) => {
+                        chunks.push(chunk);
+                    });
+
+                    doc.on('end', () => {
+                        callback(Buffer.concat(chunks));
+                    });
+
+                    doc.end();
+
+                } catch (err) {
+                    throw (err);
+                }
+            };
+
+
+            const docDefinition = {
+                content: [{
+                        text: jsonData.heading,
+                        style: 'title'
+                    },
+                    {
+                        text: jsonData.subHeading,
+                        style: 'subHeading'
+                    },
+                    {
+                        text: striptags(jsonData.para1),
+                        style: 'para1'
+                    },
+                    {
+                        text: striptags(jsonData.para2),
+                        style: 'para2'
+                    },
+                    {
+                        text: striptags(jsonData.para3),
+                        style: 'para3'
+                    }
+                ],
+
+                styles: {
+                    title: {
+                        marginTop: 20,
+                        fontSize: 28,
+                        bold: true,
+                        alignment: 'center'
+                    },
+                    subHeading: {
+                        marginTop: 5,
+                        fontSize: 20,
+                        alignment: 'center'
+                    },
+                    para1: {
+                        marginTop: 30,
+                        alignment: 'justify',
+                        color: 'grey',
+                        fontSize: 14
+                    },
+                    para2: {
+                        marginTop: 30,
+                        alignment: 'justify',
+                        color: 'grey',
+                        fontSize: 14
+                    },
+                    para3: {
+                        marginTop: 30,
+                        alignment: 'justify',
+                        color: 'grey',
+                        fontSize: 14
+                    }
+                }
+            };
+
+            generatePdf(docDefinition, (result) => {
+                res.setHeader('Content-Type', 'application/pdf');
+                res.send(result);
+            });
+
+        } else {
+            res.redirect('/about');
+        }
+
+    });
+});
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

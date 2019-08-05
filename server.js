@@ -629,7 +629,8 @@ app.get('/about/pdf', async (req, res) => {
     });
 });
 
-app.get('/edit', authentication, (request, response) => {
+app.get('/edit/:id', authentication, (request, response) => {
+    let id = request.params.id;
     if (request.user) {
         response.render('edit.hbs');
     } else {

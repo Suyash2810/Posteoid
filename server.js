@@ -631,8 +631,14 @@ app.get('/about/pdf', async (req, res) => {
 
 app.get('/edit/:id', authentication, (request, response) => {
     let id = request.params.id;
+    let postId = {
+        id
+    };
+
     if (request.user) {
-        response.render('edit.hbs');
+        response.render('edit.hbs', {
+            postId
+        });
     } else {
         response.redirect('/auth/login');
     }

@@ -671,6 +671,11 @@ app.get('/edit/:id', authentication, async (request, response) => {
 
     let post = await Post.findById(id);
 
+    response.clearCookie('editError');
+    response.clearCookie('deleteError');
+    response.clearCookie('updateSuccess');
+    response.clearCookie('updateError');
+
     if (request.user) {
         response.render('edit.hbs', {
             postId,

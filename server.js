@@ -492,6 +492,7 @@ app.get('/about/pdf', async (req, res) => {
         if (!err) {
 
             var $ = cheerio.load(html);
+            // Scraping the page.
 
             var heading, subHeading, para1, para2, para3;
 
@@ -629,15 +630,18 @@ app.get('/about/pdf', async (req, res) => {
     });
 });
 
-app.get('/edit/:id', authentication, (request, response) => {
+app.get('/edit/:id', authentication, async (request, response) => {
     let id = request.params.id;
     let postId = {
         id
     };
 
+    let post = await Post.findById(id);
+
     if (request.user) {
         response.render('edit.hbs', {
-            postId
+            postId,
+            post
         });
     } else {
         response.redirect('/auth/login');

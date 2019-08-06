@@ -666,10 +666,44 @@ app.post('/edit/post/:id', authentication, async (request, response) => {
         let post = await Post.findById(id);
         let postCreatorId = post.creator_id.toString();
         let matchCheck = _.isEqual(userId, postCreatorId);
-
+        // console.log(request.body);
         if (matchCheck) {
-            response.send(request.body);
+
             // The updation has to be done here.
+            let body = _.pick(request.body, ['username', 'title', 'description', 'content']);
+            let toUpdateData = {};
+
+            Object.keys(body).forEach(
+                (key) => {
+                    if (!(_.isEmpty(body[key]))) {
+                        toUpdateData[key] = body[key];
+                    }
+                }
+            )
+
+
+            Post.findOneAndUpdate({
+                _id: id,
+                creator_id: postCreatorId
+            }, {
+                $set: toUpdateData
+            }, {
+                new: true
+            }).then(
+                (result) => {
+                    if (!result) {
+                        response.redirect(`/post/${id}`);
+                    } else {
+                        console.log(result);
+                        response.redirect(`/post/${id}`);
+                    }
+                }
+            ).catch(
+                (error) => {
+                    response.redirect('/');
+                }
+            );
+
         } else {
 
             let errorData = {

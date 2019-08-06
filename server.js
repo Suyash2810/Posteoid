@@ -648,6 +648,34 @@ app.get('/edit/:id', authentication, async (request, response) => {
     }
 });
 
+app.post('/edit/post/:id', authentication, async (request, response) => {
+
+    let id = request.params.id;
+
+    if (request.user) {
+        let userId = request.user._id.toString();
+        let post = await Post.findById(id);
+        let postCreatorId = post.creator_id.toString();
+        let matchCheck = _.isEqual(userId, postCreatorId);
+
+        if (matchCheck) {
+            response.send(request.body);
+            // The updation has to be done here.
+        } else {
+            // If the creator id does not match with the current user logged in then redirect to the post page
+            // With the respective errors displaying that the creato can only edit the post.
+
+            response.redirect(`/post/${id}`);
+        }
+
+
+
+    } else {
+        response.redirect('/index');
+    }
+
+});
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

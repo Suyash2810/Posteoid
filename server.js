@@ -694,7 +694,7 @@ app.post('/edit/post/:id', authentication, async (request, response) => {
                     if (!result) {
                         response.redirect(`/post/${id}`);
                     } else {
-                        console.log(result);
+
                         response.redirect(`/post/${id}`);
                     }
                 }

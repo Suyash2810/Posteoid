@@ -375,6 +375,11 @@ app.get('/delete/:id', authentication, async (request, response) => {
 
     let id = request.params.id;
 
+    if (!ObjectID.isValid(id)) {
+
+        response.redirect('/');
+    }
+
     if (request.user) {
         let userId = request.user._id.toString();
         let post = await Post.findById(id);
@@ -418,6 +423,11 @@ app.get('/delete/:id', authentication, async (request, response) => {
 app.get('/post/pdf/:id', async (req, res) => {
 
     let id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+
+        response.redirect('/');
+    }
 
     let post = await Post.findById(id);
 
@@ -665,6 +675,12 @@ app.get('/about/pdf', async (req, res) => {
 
 app.get('/edit/:id', authentication, async (request, response) => {
     let id = request.params.id;
+
+    if (!ObjectID.isValid(id)) {
+
+        response.redirect('/');
+    }
+
     let postId = {
         id
     };
@@ -689,6 +705,11 @@ app.get('/edit/:id', authentication, async (request, response) => {
 app.post('/edit/post/:id', authentication, async (request, response) => {
 
     let id = request.params.id;
+
+    if (!ObjectID.isValid(id)) {
+
+        response.redirect('/');
+    }
 
     if (request.user) {
         let userId = request.user._id.toString();

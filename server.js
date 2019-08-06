@@ -60,6 +60,7 @@ app.get('/', authentication, async (request, response) => {
     if (request.user) {
         let data = await Post.find({});
         response.clearCookie('deleteError');
+        response.clearCookie('editError');
         response.render('index', data);
     } else {
         response.redirect('/index');
@@ -182,7 +183,8 @@ app.get('/post/:id', authentication, async (request, response) => {
         let post = await Post.findById(request.params.id);
 
         let delobj = request.cookies.deleteError;
-
+        let editobj = request.cookies.editError;
+        let editObj = {};
         let DelObj = {};
 
         if (delobj) {
@@ -193,9 +195,16 @@ app.get('/post/:id', authentication, async (request, response) => {
             );
         }
 
+        if (editobj) {
+            Object.keys(editobj).forEach((key) => {
+                editObj[key] = editobj[key];
+            })
+        }
+
         response.render('post', {
             post,
-            DelObj
+            DelObj,
+            editObj
         });
     } else {
         response.redirect('/auth/login');
@@ -662,8 +671,12 @@ app.post('/edit/post/:id', authentication, async (request, response) => {
             response.send(request.body);
             // The updation has to be done here.
         } else {
-            // If the creator id does not match with the current user logged in then redirect to the post page
-            // With the respective errors displaying that the creato can only edit the post.
+
+            let errorData = {
+                err: "The data can only be edited by the creator of the respective post."
+            };
+
+            response.cookie('editError', errorData);
 
             response.redirect(`/post/${id}`);
         }

@@ -107,6 +107,35 @@
             </div>
 
         </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {{#if updateError}}
+                {{#if updateError.err}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{updateError.err}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {{#if successObj}}
+                {{#if successObj.success}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{successObj.success}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
+
+        </div>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2" style="text-align:center;">
                 <a href="/post/pdf/{{post._id}}" class="btn btn-info">Save as PDF.</a>

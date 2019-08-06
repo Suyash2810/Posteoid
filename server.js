@@ -61,6 +61,8 @@ app.get('/', authentication, async (request, response) => {
         let data = await Post.find({});
         response.clearCookie('deleteError');
         response.clearCookie('editError');
+        response.clearCookie('updateError');
+        response.clearCookie('updateSuccess');
         response.render('index', data);
     } else {
         response.redirect('/index');
@@ -184,8 +186,13 @@ app.get('/post/:id', authentication, async (request, response) => {
 
         let delobj = request.cookies.deleteError;
         let editobj = request.cookies.editError;
+        let updateObj = request.cookies.updateError;
+        let successUpdateObj = request.cookies.updateSuccess;
+
         let editObj = {};
         let DelObj = {};
+        let updateError = {};
+        let successObj = {};
 
         if (delobj) {
             Object.keys(delobj).forEach(
@@ -201,11 +208,28 @@ app.get('/post/:id', authentication, async (request, response) => {
             })
         }
 
+        if (updateObj) {
+            Object.keys(updateObj).forEach((key) => {
+                updateError[key] = updateObj[key];
+            })
+        }
+
+        if (successUpdateObj) {
+            Object.keys(successUpdateObj).forEach(
+                (key) => {
+                    successObj[key] = successUpdateObj[key];
+                }
+            )
+        }
+
         response.render('post', {
             post,
             DelObj,
-            editObj
+            editObj,
+            updateError,
+            successObj
         });
+
     } else {
         response.redirect('/auth/login');
     }
@@ -449,7 +473,7 @@ app.get('/post/pdf/:id', async (req, res) => {
                 style: 'description'
             },
             {
-                text: striptags(post.content),
+                text: striptags(post.content.replace(/(&rsquo;)*/g, "").replace(/(&nbsp;)*/g, "")),
                 style: 'content'
             }
         ],
@@ -692,8 +716,19 @@ app.post('/edit/post/:id', authentication, async (request, response) => {
             }).then(
                 (result) => {
                     if (!result) {
+                        let errorObj = {
+                            err: "The post could not be updated."
+                        }
+
+                        response.cookie('updateError', errorObj);
+
                         response.redirect(`/post/${id}`);
                     } else {
+                        let successObj = {
+                            success: "The post has been updated successfully."
+                        }
+
+                        response.cookie('updateSuccess', successObj);
 
                         response.redirect(`/post/${id}`);
                     }

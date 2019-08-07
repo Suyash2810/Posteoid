@@ -33,8 +33,7 @@
     <nav class="navbar" style="position:absolute;z-index:1000;width:100%;color:whitesmoke;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/" style="color: whitesmoke;"><i class="fa fa-arrow-left"> Back to
-                        Home</i></a>
+                <a class="navbar-brand" href="/" style="color: whitesmoke;"><i class="fa fa-arrow-left"></i></a>
             </div>
         </div>
     </nav>
@@ -111,6 +110,12 @@
         tinymce.init({
             selector: "#contentData"
         });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+    <script>
+        var time = moment().format('YYYY');
+        var data = `Copyright &copy; Our Blog ${time}`;
+        document.getElementsByClassName('copyright')[0].innerHTML = data;
     </script>
 </body>
 

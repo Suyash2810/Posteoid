@@ -822,11 +822,36 @@ app.post('/post/comment/:id', authentication, (request, response) => {
     }
 });
 
-app.get('/delete/comment/:id', (request, response) => {
+app.get('/delete/comment/:id', async (request, response) => {
 
-    response.render('confirmation.hbs');
+    let id = request.params.id;
+    let comment = await Comment.findById(id);
+    let post_id = comment.post_id;
+
+    let ids = {
+        id: id,
+        postId: post_id
+    };
+
+    response.render('confirmation.hbs', {
+        ids
+    });
 
 });
+
+app.get('/delete/comment/confirm/:id', async (request, response) => {
+
+    let comment_id = request.params.id;
+    let comment = await Comment.findById(comment_id);
+    let post_id = comment.post_id;
+
+    let result = await Comment.findByIdAndRemove(comment_id);
+
+    if (result) {
+        response.redirect(`/post/${post_id}`);
+    }
+
+})
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

@@ -6,3 +6,4 @@ In comment section show suggestions for names when someone is mentioning a perso
 Delete a comment 
 Error validation for a comment - when the comment is empty.
 Manage the functionality of the delete post.
+Create success messages for comment deletion.

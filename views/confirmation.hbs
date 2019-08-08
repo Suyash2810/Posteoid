@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
         body {
@@ -49,7 +50,7 @@
         }
 
         .container-fluid {
-            padding-top: 70px;
+            padding-top: 50px;
             padding-bottom: 70px;
         }
 
@@ -82,15 +83,23 @@
 
     <!-- First Container -->
     <div class="container-fluid bg-1 text-center">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+        <div class="row" style="margin-top:0px;">
+            <div class="col-md-6 col-md-offset-3">
                 <h3 class="margin">Confirmation</h3>
-                <img src="/img/computer-keyboard-facts-indoors-968631.jpg" class="img-responsive img-circle margin"
-                    style="display:inline" alt="Bird" width="350" height="350">
+                <img src="/img/bin-blur-close-up-850216.jpg" class="img-responsive img-circle margin"
+                    style="display:inline;opacity:0.5;" alt="Bird" width="350" height="350">
                 <h3>Are you sure?</h3>
+                <br>
             </div>
-            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <a href="/post/{{ids.postId}}" class="btn btn-default pull-left" style="border: 1px solid cyan;"><i
+                        class="fa fa-arrow-left" style="color:cyan;"></i> NO!</a>
+                <a href="/delete/comment/confirm/{{ids.id}}" class="btn btn-default pull-right"
+                    style="border: 1px solid cyan;">Delete. <i class="fa fa-arrow-right" style="color:cyan;"></i>
+                </a>
+            </div>
         </div>
     </div>
 

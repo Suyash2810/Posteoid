@@ -10,6 +10,10 @@ var commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    post_id: {
+        required: true,
+        type: String
+    },
     createdAt: {
         type: String,
         default: moment().format("MMM Do YY").toString()

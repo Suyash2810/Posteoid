@@ -226,12 +226,17 @@ app.get('/post/:id', authentication, async (request, response) => {
             )
         }
 
+        let comments = await Comment.find({
+            post_id: request.params.id
+        })
+
         response.render('post', {
             post,
             DelObj,
             editObj,
             updateError,
-            successObj
+            successObj,
+            comments
         });
 
     } else {

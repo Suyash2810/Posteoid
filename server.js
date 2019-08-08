@@ -28,6 +28,10 @@ const {
 } = require('./models/contacts');
 
 const {
+    Comment
+} = require('./models/comments');
+
+const {
     ObjectID
 } = require('mongodb');
 
@@ -782,6 +786,35 @@ app.post('/edit/post/:id', authentication, async (request, response) => {
         response.redirect('/index');
     }
 
+});
+
+app.post('/post/comment/:id', authentication, (request, response) => {
+
+    if (request.user) {
+        let post_id = request.params.id;
+        let content = _.pick(request.body, ['content']).content;
+        let name = request.user.username;
+
+        let body = {
+            name,
+            content,
+            post_id
+        }
+
+
+        let comment = new Comment(body);
+
+        comment.save().then(
+            (comment) => {
+                response.redirect(`/post/${post_id}`);
+            }
+        ).catch(
+            err => {
+                response.send(err);
+            }
+        )
+
+    }
 });
 
 app.listen(port, () => {

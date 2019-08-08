@@ -822,6 +822,12 @@ app.post('/post/comment/:id', authentication, (request, response) => {
     }
 });
 
+app.get('/delete/comment/:id', (request, response) => {
+
+    response.render('confirmation.hbs');
+
+});
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

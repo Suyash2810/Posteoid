@@ -870,7 +870,7 @@ app.post('/post/comment/:id', authentication, (request, response) => {
             }
         ).catch(
             err => {
-                response.send(err);
+                response.redirect(`/post/${request.params.id}`);
             }
         )
 

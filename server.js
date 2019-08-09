@@ -67,6 +67,7 @@ app.get('/', authentication, async (request, response) => {
         response.clearCookie('editError');
         response.clearCookie('updateError');
         response.clearCookie('updateSuccess');
+        response.clearCookie('commentDelete');
         response.render('index', data);
     } else {
         response.redirect('/index');
@@ -414,6 +415,25 @@ app.post('/contact/add', async (request, response) => {
     response.redirect('/index');
 });
 
+app.get('/delete/confirm/:id', (request, response) => {
+
+    let id = request.params.id;
+
+    if (!ObjectID.isValid(id)) {
+
+        response.redirect('/');
+    }
+
+    let ids = {
+        postId: id
+    }
+
+    response.render('deletePost.hbs', {
+        ids
+    });
+});
+
+
 app.get('/delete/:id', authentication, async (request, response) => {
 
     let id = request.params.id;
@@ -734,6 +754,7 @@ app.get('/edit/:id', authentication, async (request, response) => {
     response.clearCookie('deleteError');
     response.clearCookie('updateSuccess');
     response.clearCookie('updateError');
+    response.clearCookie('commentDelete');
 
     if (request.user) {
         response.render('edit.hbs', {

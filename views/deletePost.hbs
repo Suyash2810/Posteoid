@@ -3,7 +3,7 @@
 
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Delete Comment</title>
+    <title>Delete Post</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -96,8 +96,9 @@
             <div class="col-md-4 col-md-offset-4">
                 <a href="/post/{{ids.postId}}" class="btn btn-default pull-left" style="border: 1px solid cyan;"><i
                         class="fa fa-arrow-left" style="color:cyan;"></i> NO!</a>
-                <a href="/delete/comment/confirm/{{ids.id}}" class="btn btn-default pull-right"
-                    style="border: 1px solid cyan;">Delete. <i class="fa fa-arrow-right" style="color:cyan;"></i>
+                <a href="/delete/{{ids.postId}}" class="btn btn-default pull-right"
+                    style="border: 1px solid cyan;">Delete.
+                    <i class="fa fa-arrow-right" style="color:cyan;"></i>
                 </a>
             </div>
         </div>

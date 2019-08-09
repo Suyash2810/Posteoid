@@ -8,7 +8,3 @@ In comment section show suggestions for names when someone is mentioning a perso
 In comment section for adding emoticons.
 
 Error validation for a comment - when the comment is empty.
-
-Complete the confirmation procedure for the delete post functionality - Manage the functionality of the delete post.
-
-Create success messages for comment deletion.

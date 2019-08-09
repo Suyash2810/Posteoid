@@ -231,13 +231,26 @@ app.get('/post/:id', authentication, async (request, response) => {
             post_id: request.params.id
         })
 
+        let commentobj = request.cookies.commentDelete;
+        let commentObj = {}
+
+        if (commentobj) {
+
+            Object.keys(commentobj).forEach(
+                key => {
+                    commentObj[key] = commentobj[key]
+                }
+            )
+        }
+
         response.render('post', {
             post,
             DelObj,
             editObj,
             updateError,
             successObj,
-            comments
+            comments,
+            commentObj
         });
 
     } else {
@@ -869,6 +882,11 @@ app.get('/delete/comment/confirm/:id', async (request, response) => {
     let result = await Comment.findByIdAndRemove(comment_id);
 
     if (result) {
+        let delObj = {
+            success: "Comment has been successfully deleted."
+        }
+        response.cookie('commentDelete', delObj);
+
         response.redirect(`/post/${post_id}`);
     }
 

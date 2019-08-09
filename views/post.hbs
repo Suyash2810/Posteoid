@@ -26,6 +26,7 @@
     <link rel="icon" href="/img/blur-card-cardboard-211290.jpg" type="image/gif" sizes="16x16">
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/emoji/css/emojionearea.min.css">
     <style type="text/css">
         .comment-wrapper .panel-body {
             max-height: 650px;
@@ -189,7 +190,7 @@
                             <form action="/post/comment/{{post._id}}" method="post">
                                 <div class="form-group">
                                     <textarea class="form-control" placeholder="write a comment..." rows="3"
-                                        name="content" required="true"></textarea>
+                                        name="content" required="true" id="commentEmoji"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-info pull-right">Post</button>
@@ -243,6 +244,14 @@
         var time = moment().format('YYYY');
         var data = `Copyright &copy; Our Blog ${time}`;
         document.getElementsByClassName('copyright')[0].innerHTML = data;
+    </script>
+    <script src="/emoji/js/emojionearea.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#commentEmoji').emojioneArea({
+                pickerPosition: 'bottom'
+            });
+        });
     </script>
 </body>
 

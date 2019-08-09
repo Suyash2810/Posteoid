@@ -63,6 +63,20 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                {{#if logoutObj}}
+                {{#if logoutObj.success}}
+                <div class="alert alert-success alert-dismissable">
+                    {{logoutObj.success}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
                 <form action="/users/login" method="POST" encType="multipart/form-data">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">

@@ -77,6 +77,7 @@ app.get('/', authentication, async (request, response) => {
 app.get('/index', (request, response) => {
     response.clearCookie('loginErr');
     response.clearCookie('errors');
+    response.clearCookie('logoutMessage');
     response.sendFile(path.resolve(__dirname + '/pages/index.html'));
 });
 
@@ -322,8 +323,21 @@ app.get('/auth/login', (request, response) => {
             });
         }
 
+        let logoutobj = request.cookies.logoutMessage;
+        let logoutObj = {};
+
+        if (logoutobj) {
+
+            Object.keys(logoutobj).forEach(
+                key => {
+                    logoutObj[key] = logoutobj[key]
+                }
+            )
+        }
+
         response.render('login.hbs', {
-            errData
+            errData,
+            logoutObj
         });
     }
 });
@@ -365,6 +379,13 @@ app.post('/users/login', (request, response) => {
 app.get('/user/logout', (request, response) => {
 
     response.clearCookie('authAccessJWT');
+
+    let logoutMessage = {
+        success: "You have been successfully logged out."
+    }
+
+    response.cookie('logoutMessage', logoutMessage);
+
     response.redirect('/auth/login');
 });
 

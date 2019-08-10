@@ -142,7 +142,6 @@
                 {{/if}}
                 {{/if}}
             </div>
-
         </div>
 
         <div class="row">
@@ -164,6 +163,19 @@
                 {{#if commentObj.success}}
                 <div class="alert alert-success alert-dismissable">
                     {{commentObj.success}}
+                    <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {{#if comErrObj}}
+                {{#if comErrObj.err}}
+                <div class="alert alert-danger alert-dismissable">
+                    {{comErrObj.err}}
                     <a href="#" class="close alert-link pull-right" data-dismiss="alert">&times;</a>
                 </div>
                 {{/if}}

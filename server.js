@@ -235,6 +235,40 @@ app.get('/post/:id', authentication, async (request, response) => {
             );
         }
 
+
+        let match = _.isEqual(request.user._id.toString(), post.creator_id.toString());
+
+        if (!match) {
+
+            let toUpdateData = {
+                views: post.views + 1
+            }
+
+            let id = request.params.id;
+
+            Post.findOneAndUpdate({
+                _id: id
+            }, {
+                $set: toUpdateData
+            }, {
+                new: true
+            }).then(
+                (result) => {
+                    if (!result) {
+                        console.log("Views not updated.");
+                    } else {
+                        console.log("Views have been incremented.", result);
+                    }
+                }
+            ).catch(
+                (error) => {
+                    response.redirect('/');
+                }
+            );
+        }
+
+
+
         response.render('post', {
             post,
             DelObj,

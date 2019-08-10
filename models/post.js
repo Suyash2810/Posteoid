@@ -25,6 +25,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: String,
         default: moment().format("MMM Do YY").toString()

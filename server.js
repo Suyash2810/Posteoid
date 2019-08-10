@@ -257,7 +257,7 @@ app.get('/post/:id', authentication, async (request, response) => {
                     if (!result) {
                         console.log("Views not updated.");
                     } else {
-                        console.log("Views have been incremented.", result);
+                        console.log("\n Views have been incremented: ", result.views);
                     }
                 }
             ).catch(
@@ -267,7 +267,10 @@ app.get('/post/:id', authentication, async (request, response) => {
             );
         }
 
-
+        let UpdatedPost = await Post.findById(request.params.id);
+        let views = {
+            views: UpdatedPost.views
+        }
 
         response.render('post', {
             post,
@@ -277,7 +280,8 @@ app.get('/post/:id', authentication, async (request, response) => {
             successObj,
             comments,
             commentObj,
-            comErrObj
+            comErrObj,
+            views
         });
 
     } else {

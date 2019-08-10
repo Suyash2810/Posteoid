@@ -854,11 +854,13 @@ app.post('/post/comment/:id', authentication, (request, response) => {
         let post_id = request.params.id;
         let content = _.pick(request.body, ['content']).content;
         let name = request.user.username;
+        let user_id = request.user._id;
 
         let body = {
             name,
             content,
-            post_id
+            post_id,
+            user_id
         }
 
 
@@ -877,20 +879,32 @@ app.post('/post/comment/:id', authentication, (request, response) => {
     }
 });
 
-app.get('/delete/comment/:id', async (request, response) => {
+app.get('/delete/comment/:id', authentication, async (request, response) => {
 
-    let id = request.params.id;
-    let comment = await Comment.findById(id);
-    let post_id = comment.post_id;
+    if (request.user) {
+        let id = request.params.id;
+        let comment = await Comment.findById(id);
+        let post_id = comment.post_id;
+        let user_id = comment.user_id.toString();
+        let reUserId = request.user._id.toString();
+        let matchCheck = _.isEqual(user_id, reUserId);
 
-    let ids = {
-        id: id,
-        postId: post_id
-    };
+        if (matchCheck) {
+            let ids = {
+                id: id,
+                postId: post_id
+            };
 
-    response.render('confirmation.hbs', {
-        ids
-    });
+            response.render('confirmation.hbs', {
+                ids
+            });
+        } else {
+            response.redirect(`/post/${post_id}`);
+            //Display the error message also.
+        }
+    } else {
+        response.redirect('/');
+    }
 
 });
 

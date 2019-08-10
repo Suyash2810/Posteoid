@@ -14,6 +14,10 @@ var commentSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    user_id: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: String,
         default: moment().format("MMM Do YY").toString()

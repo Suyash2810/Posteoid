@@ -63,13 +63,17 @@ app.get('/', authentication, async (request, response) => {
 
     if (request.user) {
         let data = await Post.find({});
+        let user = await User.findById(request.user._id);
         response.clearCookie('deleteError');
         response.clearCookie('editError');
         response.clearCookie('updateError');
         response.clearCookie('updateSuccess');
         response.clearCookie('commentDelete');
         response.clearCookie('commentDelErr');
-        response.render('index', data);
+        response.render('index', {
+            data,
+            user
+        });
     } else {
         response.redirect('/index');
     }
@@ -415,7 +419,7 @@ app.get('/delete/confirm/:id', (request, response) => {
     let ids = {
         postId: id
     }
-
+    response.clearCookie('commentDelErr');
     response.render('deletePost.hbs', {
         ids
     });
@@ -743,6 +747,7 @@ app.get('/edit/:id', authentication, async (request, response) => {
     response.clearCookie('updateSuccess');
     response.clearCookie('updateError');
     response.clearCookie('commentDelete');
+    response.clearCookie('commentDelErr');
 
     if (request.user) {
         response.render('edit.hbs', {

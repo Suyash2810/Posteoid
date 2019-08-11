@@ -18,6 +18,9 @@ var commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userImage: {
+        type: String
+    },
     createdAt: {
         type: String,
         default: moment().format("MMM Do YY").toString()

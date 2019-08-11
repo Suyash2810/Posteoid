@@ -940,12 +940,14 @@ app.post('/post/comment/:id', authentication, (request, response) => {
         let content = _.pick(request.body, ['content']).content;
         let name = request.user.username;
         let user_id = request.user._id;
+        let userImage = request.user.image;
 
         let body = {
             name,
             content,
             post_id,
-            user_id
+            user_id,
+            userImage
         }
 
 

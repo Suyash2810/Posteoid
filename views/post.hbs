@@ -214,7 +214,11 @@
                                 {{#each comments}}
                                 <li class="media">
                                     <a href="#" class="pull-left">
+                                        {{#if this.userImage}}
+                                        <img src="{{this.userImage}}" alt="" class="img-circle">
+                                        {{else}}
                                         <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                        {{/if}}
                                     </a>
                                     <div class="media-body">
                                         <span class="text-muted pull-right">

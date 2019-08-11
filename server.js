@@ -272,6 +272,10 @@ app.get('/post/:id', authentication, async (request, response) => {
             views: UpdatedPost.views
         }
 
+        let disableView = {
+            view: _.isEqual(request.user._id.toString(), post.creator_id.toString())
+        }
+
         response.render('post', {
             post,
             DelObj,
@@ -281,7 +285,8 @@ app.get('/post/:id', authentication, async (request, response) => {
             comments,
             commentObj,
             comErrObj,
-            views
+            views,
+            disableView
         });
 
     } else {

@@ -5,4 +5,3 @@ create functionality for users to upload their images on registration. modify th
 
 
 Further you can add the functionality of seeing the number of views in the past week.
-Only the user who created the post can see the views option and the total number of views.

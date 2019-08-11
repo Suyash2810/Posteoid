@@ -232,11 +232,13 @@
                                 {{/each}}
                             </ul>
                         </div>
+                        {{#if disableView.view}}
                         {{#if views}}
                         {{#if views.views}}
                         <div class="panel-footer" style="background-color: transparent;">
                             <span class="label label-info">Total Views: {{views.views}}</span>
                         </div>
+                        {{/if}}
                         {{/if}}
                         {{/if}}
                     </div>

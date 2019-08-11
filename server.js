@@ -322,39 +322,88 @@ app.get('/auth/register', (request, response) => {
 
 app.post('/users/register', (request, response) => {
 
-    let userData = _.pick(request.body, ['username', 'email', 'password']);
+    if (request.files) {
 
-    let user = new User(userData);
-    user.save().then(
-        (result) => {
-            let log = result.username + " -- " + result.email + " registered at time: " + new Date().toString() + "\n";
-            fs.appendFileSync('./logs/register.log', log);
-            return response.redirect('/auth/login');
-        }
-    ).catch(
-        (error) => {
+        let {
+            image
+        } = request.files;
 
-            if (error) {
-                // console.log(Object.keys(error.errors));
-                let errObj = {};
-                Object.keys(error.errors).forEach(
-                    (key) => {
-                        errObj[key] = error.errors[key].message;
+        image.mv(path.resolve(__dirname, 'public/userImages', image.name), (error) => {
+
+
+            let userData = _.pick(request.body, ['username', 'email', 'password']);
+            userData.image = `/userImages/${image.name}`;
+
+            let user = new User(userData);
+
+
+            user.save().then(
+                (result) => {
+                    let log = result.username + " -- " + result.email + " registered at time: " + new Date().toString() + "\n";
+                    fs.appendFileSync('./logs/register.log', log);
+                    return response.redirect('/auth/login');
+                }
+            ).catch(
+                (error) => {
+
+                    if (error) {
+                        // console.log(Object.keys(error.errors));
+                        let errObj = {};
+                        Object.keys(error.errors).forEach(
+                            (key) => {
+                                errObj[key] = error.errors[key].message;
+                            }
+                        );
+
+                        var registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
+
+                        var errorMessage = new Message;
+                        errorMessage.type = 'message or event type';
+                        errorMessage.data.errors = registrationErrors;
+                        console.log("\n " + errorMessage.JSON);
+
+                        response.cookie('errors', errObj);
                     }
-                );
+                    return response.redirect('/auth/register');
+                }
+            )
+        })
+    } else {
+        let userData = _.pick(request.body, ['username', 'email', 'password']);
+        let user = new User(userData);
 
-                var registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
 
-                var errorMessage = new Message;
-                errorMessage.type = 'message or event type';
-                errorMessage.data.errors = registrationErrors;
-                console.log("\n " + errorMessage.JSON);
-
-                response.cookie('errors', errObj);
+        user.save().then(
+            (result) => {
+                let log = result.username + " -- " + result.email + " registered at time: " + new Date().toString() + "\n";
+                fs.appendFileSync('./logs/register.log', log);
+                return response.redirect('/auth/login');
             }
-            return response.redirect('/auth/register');
-        }
-    )
+        ).catch(
+            (error) => {
+
+                if (error) {
+                    // console.log(Object.keys(error.errors));
+                    let errObj = {};
+                    Object.keys(error.errors).forEach(
+                        (key) => {
+                            errObj[key] = error.errors[key].message;
+                        }
+                    );
+
+                    var registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
+
+                    var errorMessage = new Message;
+                    errorMessage.type = 'message or event type';
+                    errorMessage.data.errors = registrationErrors;
+                    console.log("\n " + errorMessage.JSON);
+
+                    response.cookie('errors', errObj);
+                }
+                return response.redirect('/auth/register');
+            }
+        );
+    }
 });
 
 

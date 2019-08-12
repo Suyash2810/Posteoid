@@ -3,7 +3,7 @@ const imageminJpegtran = require('imagemin-jpegtran');
 const imageminPngquant = require('imagemin-pngquant');
 var path = require('path');
 
-var compress = async (imageURL, callback) => {
+var compress = async (imageURL) => {
 
     const files = await imagemin([`public${imageURL}`], {
         destination: path.resolve(__dirname, '..', 'public/build/userImagesCompressed'),
@@ -16,7 +16,7 @@ var compress = async (imageURL, callback) => {
     });
 
     console.log(files);
-    callback(files);
+    return Promise.resolve(files);
 }
 
 

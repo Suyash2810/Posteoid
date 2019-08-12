@@ -332,21 +332,19 @@ app.post('/users/register', (request, response) => {
             image
         } = request.files;
 
-        image.mv(path.resolve(__dirname, 'public/userImages', image.name), (error) => {
-
+        image.mv(path.resolve(__dirname, 'public/userImages', image.name), async (error) => {
 
             let userData = _.pick(request.body, ['username', 'email', 'password']);
-            userData.image = `/userImages/${image.name}`;
+
+            /*
+                compress function compresses the images uploaded by the user for profile and saves them 
+                in public/build/userImagesCompressed
+            */
+
+            let result = await compress(`/userImages/${image.name}`);
+            !_.isEmpty(result[0].data) ? userData.image = `/build/userImagesCompressed/${image.name}` : userData.image = `/userImages/${image.name}`;
 
             let user = new User(userData);
-
-            compress(userData.image, (result) => {
-                if (result) {
-                    console.log("Image has been compressed.");
-                } else {
-                    console.log("Image could not be compressed.");
-                }
-            });
 
             user.save().then(
                 (result) => {

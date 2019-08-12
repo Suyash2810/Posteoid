@@ -43,6 +43,10 @@ const request = require('request');
 const pdfMakePrinter = require('pdfmake/src/printer');
 const striptags = require('striptags');
 
+const {
+    compress
+} = require('./middleware/compressImage');
+
 const app = express();
 const port = process.env.port || 3000;
 
@@ -336,6 +340,13 @@ app.post('/users/register', (request, response) => {
 
             let user = new User(userData);
 
+            compress(userData.image, (result) => {
+                if (result) {
+                    console.log("Image has been compressed.");
+                } else {
+                    console.log("Image could not be compressed.");
+                }
+            });
 
             user.save().then(
                 (result) => {

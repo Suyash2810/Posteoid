@@ -542,6 +542,8 @@ app.get('/delete/:id', authentication, async (request, response) => {
         let postCreatorId = post.creator_id.toString();
         let matchCheck = _.isEqual(userId, postCreatorId);
         // console.log(typeof (userId) + " ----- " + typeof (id));
+        response.clearCookie('commentDelete');
+        response.clearCookie('commentDelErr');
 
         if (matchCheck) {
             Post.findByIdAndRemove(id).then(
@@ -959,6 +961,8 @@ app.post('/post/comment/:id', authentication, (request, response) => {
             userImage
         }
 
+        response.clearCookie('commentDelErr');
+        response.clearCookie('commentDelete');
 
         let comment = new Comment(body);
 
@@ -1000,7 +1004,7 @@ app.get('/delete/comment/:id', authentication, async (request, response) => {
             let objerr = {
                 err: `Comment can only be deleted by ${user.username}`
             }
-
+            response.clearCookie('commentDelErr');
             response.cookie('commentDelErr', objerr);
             response.redirect(`/post/${post_id}`);
 
@@ -1028,7 +1032,7 @@ app.get('/delete/comment/confirm/:id', async (request, response) => {
         response.redirect(`/post/${post_id}`);
     }
 
-})
+});
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

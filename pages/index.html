@@ -21,9 +21,9 @@
         href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
         rel='stylesheet' type='text/css'>
     <link rel="icon" href="img/blog-buttons-characters-1591056.jpg" type="image/gif" sizes="16x16">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -31,7 +31,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="index">Home Page</a>
+            <a class="navbar-brand" href="index" data-aos="fade-right" data-aos-duration="1000"
+                data-aos-delay="500">Home Page</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -41,19 +42,24 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index">Home</a>
+                        <a class="nav-link" href="index" data-aos="fade-down" data-aos-duration="1000"
+                            data-aos-delay="500" data-aos-offset='100'>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about">About</a>
+                        <a class="nav-link" href="about" data-aos="fade-down" data-aos-duration="1000"
+                            data-aos-delay="600" data-aos-offset='200'>About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="post">Sample Post</a>
+                        <a class="nav-link" href="post" data-aos="fade-down" data-aos-duration="1000"
+                            data-aos-delay="700" data-aos-offset='300'>Sample Post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact">Contact</a>
+                        <a class="nav-link" href="contact" data-aos="fade-down" data-aos-duration="1000"
+                            data-aos-delay="800" data-aos-offset='400'>Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/auth/login">Login</a>
+                        <a class="nav-link" href="/auth/login" data-aos="fade-down" data-aos-duration="1000"
+                            data-aos-delay="900" data-aos-offset='500'>Login</a>
                     </li>
                 </ul>
             </div>
@@ -61,13 +67,34 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <header class="masthead" style="background-image: url('/img/adult-assortment-background-1496183.jpg');
+    background-size:cover;background-attachment: fixed;background-position: center center;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Blog</h1>
+                        <h1>
+                            <svg width="197.9" height="97.2" viewBox="0 0 197.9 97.2"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="svgGroup" stroke-linecap="round" fill-rule="evenodd" font-size="9pt"
+                                    stroke="#000" stroke-width="0.25mm" fill="none"
+                                    style="stroke:#76D7C4;stroke-width:0.25mm;fill:none;">
+                                    <path
+                                        d="M 0 73.8 L 0 4.2 A 110.94 110.94 0 0 1 2.857 3.914 Q 5.431 3.688 8.65 3.5 A 164.369 164.369 0 0 1 13.472 3.295 Q 15.949 3.224 18.72 3.206 A 292.75 292.75 0 0 1 20.6 3.2 A 55.652 55.652 0 0 1 27.986 3.657 Q 31.681 4.153 34.697 5.188 A 22.517 22.517 0 0 1 40.35 8 A 16.261 16.261 0 0 1 45.033 12.889 Q 46.997 16.139 47.181 20.324 A 19.927 19.927 0 0 1 47.2 21.2 A 17.88 17.88 0 0 1 46.665 25.68 A 13.634 13.634 0 0 1 44.3 30.6 Q 41.675 34.04 36.755 36.415 A 31.946 31.946 0 0 1 35.7 36.9 A 30.672 30.672 0 0 1 40.336 38.953 Q 43.813 40.875 46 43.5 A 14.932 14.932 0 0 1 49.281 50.981 A 20.14 20.14 0 0 1 49.5 54 A 19.849 19.849 0 0 1 48.174 61.388 Q 46.385 65.891 42.184 69.099 A 22.52 22.52 0 0 1 42.05 69.2 A 24.359 24.359 0 0 1 34.85 72.826 Q 31.514 73.905 27.445 74.395 A 60.821 60.821 0 0 1 20.2 74.8 A 266.158 266.158 0 0 1 12.12 74.682 A 224.863 224.863 0 0 1 8.65 74.55 A 138.2 138.2 0 0 1 5.463 74.369 Q 2.2 74.144 0 73.8 Z M 20.9 41.6 L 9.5 41.6 L 9.5 66.3 Q 14.7 66.9 20.9 66.9 Q 29.9 66.9 34.85 63.7 Q 39.377 60.773 39.764 55.421 A 14.167 14.167 0 0 0 39.8 54.4 A 11.728 11.728 0 0 0 38.928 49.8 Q 37.826 47.187 35.333 45.312 A 14.027 14.027 0 0 0 34.9 45 A 16.7 16.7 0 0 0 30.226 42.799 Q 26.303 41.6 20.9 41.6 Z M 9.5 34.2 L 20.5 34.2 Q 26.288 34.2 30.331 32.456 A 15.329 15.329 0 0 0 33.05 30.95 Q 37.7 27.7 37.7 22.4 Q 37.7 16.814 33.282 13.917 A 12.106 12.106 0 0 0 33.1 13.8 Q 29.584 11.583 24.082 11.061 A 37.945 37.945 0 0 0 20.5 10.9 Q 17.2 10.9 14.5 11.05 Q 11.8 11.2 9.5 11.4 L 9.5 34.2 Z"
+                                        id="0 first" stroke="#D0ECE7" stroke-width="0.7mm" stroke-dashoffset="1000" />
+                                    <path
+                                        d="M 70.5 0 L 70.5 56.8 A 20.644 20.644 0 0 0 70.688 59.688 Q 71.15 62.952 72.75 64.8 A 7.363 7.363 0 0 0 77.334 67.276 A 10.724 10.724 0 0 0 79 67.4 Q 80.9 67.4 82.7 66.95 Q 84.5 66.5 85.9 65.9 L 88.1 73.2 Q 86.701 73.822 84.788 74.323 A 34.978 34.978 0 0 1 83.65 74.6 A 23.816 23.816 0 0 1 80.495 75.085 A 30.514 30.514 0 0 1 77.8 75.2 A 21.419 21.419 0 0 1 73.689 74.819 A 18.058 18.058 0 0 1 71.35 74.2 Q 68.4 73.2 66.2 71.1 A 13.281 13.281 0 0 1 63.722 67.827 A 16.994 16.994 0 0 1 62.75 65.7 Q 61.5 62.4 61.5 57.7 L 61.5 0 L 70.5 0 Z"
+                                        id="1" stroke="#D0ECE7" stroke-width="0.7mm" stroke-dashoffset="1000" />
+                                    <path
+                                        d="M 91.664 41.659 A 34.196 34.196 0 0 0 91.1 48 A 34.702 34.702 0 0 0 91.23 51.027 A 28.722 28.722 0 0 0 93.05 59 A 29.451 29.451 0 0 0 93.561 60.228 A 25.437 25.437 0 0 0 98.45 67.6 Q 101.9 71.2 106.65 73.2 A 24.648 24.648 0 0 0 109.702 74.255 A 27.492 27.492 0 0 0 117 75.2 A 30.449 30.449 0 0 0 118.025 75.183 A 26.432 26.432 0 0 0 127.25 73.25 Q 132 71.3 135.5 67.7 A 23.825 23.825 0 0 0 137.346 65.56 A 26.161 26.161 0 0 0 140.95 59.05 A 27.814 27.814 0 0 0 142.283 54.411 A 34.074 34.074 0 0 0 142.9 47.8 A 34.924 34.924 0 0 0 142.664 43.679 A 27.811 27.811 0 0 0 140.9 36.6 A 28.718 28.718 0 0 0 140.238 35.074 A 24.42 24.42 0 0 0 135.4 28.1 Q 131.9 24.6 127.15 22.7 A 26.059 26.059 0 0 0 126.554 22.47 A 27.19 27.19 0 0 0 117 20.8 A 31.154 31.154 0 0 0 115.806 20.823 A 26.981 26.981 0 0 0 106.75 22.7 Q 102 24.6 98.55 28.1 Q 95.1 31.6 93.1 36.65 A 27.311 27.311 0 0 0 91.664 41.659 Z M 133.7 48 Q 133.7 44.1 132.45 40.6 A 19.563 19.563 0 0 0 130.075 35.945 A 17.715 17.715 0 0 0 128.95 34.5 Q 126.7 31.9 123.65 30.35 Q 120.6 28.8 117 28.8 A 19.249 19.249 0 0 0 111.774 29.472 A 14.037 14.037 0 0 0 104.7 34 A 17.878 17.878 0 0 0 101.026 41.374 Q 100.3 44.306 100.3 47.8 Q 100.3 51.7 101.55 55.25 A 20.131 20.131 0 0 0 103.863 59.888 A 18.151 18.151 0 0 0 105.05 61.45 Q 107.3 64.1 110.35 65.65 Q 113.4 67.2 117 67.2 A 18.689 18.689 0 0 0 120.918 66.805 A 15.186 15.186 0 0 0 124 65.8 Q 127.1 64.4 129.25 61.85 A 17.366 17.366 0 0 0 131.999 57.286 A 20.701 20.701 0 0 0 132.55 55.8 A 22.798 22.798 0 0 0 133.535 51.144 A 29.007 29.007 0 0 0 133.7 48 Z"
+                                        id="2" stroke="#D0ECE7" stroke-width="0.7mm" stroke-dashoffset="1000" />
+                                    <path
+                                        d="M 189.7 26 L 189.7 22 L 197.9 22 L 197.9 72.8 Q 197.9 78.32 196.674 82.47 A 22.586 22.586 0 0 1 196.2 83.9 A 21.35 21.35 0 0 1 193.985 88.322 A 17.582 17.582 0 0 1 191.35 91.45 A 19.353 19.353 0 0 1 184.48 95.572 A 22.566 22.566 0 0 1 183.8 95.8 Q 179.4 97.2 174 97.2 A 36.362 36.362 0 0 1 165.539 96.233 A 33.912 33.912 0 0 1 165 96.1 A 27.017 27.017 0 0 1 159.513 94.068 A 23.77 23.77 0 0 1 157.3 92.8 L 160.6 85 A 20.562 20.562 0 0 0 164.417 87.373 A 24.737 24.737 0 0 0 166.2 88.15 Q 168.959 89.228 172.759 89.376 A 31.788 31.788 0 0 0 174 89.4 Q 179.771 89.4 183.527 86.955 A 12.558 12.558 0 0 0 185.15 85.7 A 11.104 11.104 0 0 0 188.023 81.312 Q 188.704 79.498 188.991 77.237 A 28.132 28.132 0 0 0 189.2 73.7 L 189.2 67.3 Q 187.2 69.7 183.45 71.85 Q 179.7 74 174.5 74 Q 170.1 74 165.9 72.25 Q 161.7 70.5 158.5 67.15 A 24.167 24.167 0 0 1 154.546 61.559 A 29.583 29.583 0 0 1 153.35 58.95 A 26.411 26.411 0 0 1 151.747 52.858 A 35.337 35.337 0 0 1 151.4 47.8 Q 151.4 42 153.3 37.05 A 28.296 28.296 0 0 1 156.551 30.882 A 25.07 25.07 0 0 1 158.45 28.5 Q 161.7 24.9 166.1 22.85 Q 170.5 20.8 175.5 20.8 A 23.149 23.149 0 0 1 179.888 21.199 A 18.269 18.269 0 0 1 183.55 22.3 A 25.597 25.597 0 0 1 187.524 24.388 A 21.326 21.326 0 0 1 189.7 26 Z M 188.9 60 L 188.9 32.8 A 27.745 27.745 0 0 0 185.922 31.006 A 35.046 35.046 0 0 0 183.6 29.9 Q 180.6 28.6 176.4 28.6 Q 173.3 28.6 170.45 29.85 Q 167.6 31.1 165.4 33.5 A 16.883 16.883 0 0 0 162.751 37.394 A 20.757 20.757 0 0 0 161.9 39.35 Q 160.6 42.8 160.6 47.3 A 24.492 24.492 0 0 0 160.967 51.629 A 19.399 19.399 0 0 0 161.9 55.05 A 19.805 19.805 0 0 0 163.819 58.883 A 16.804 16.804 0 0 0 165.4 60.95 Q 167.6 63.4 170.45 64.7 Q 173.3 66 176.5 66 A 15.276 15.276 0 0 0 181.078 65.332 A 13.606 13.606 0 0 0 183.7 64.2 A 20.855 20.855 0 0 0 186.681 62.184 A 16.309 16.309 0 0 0 188.9 60 Z"
+                                        id="3" stroke="#D0ECE7" stroke-width="0.7mm" stroke-dashoffset="1000" />
+                                </g>
+                            </svg>
+                        </h1>
                         <span class="subheading">Home Page</span>
                     </div>
                 </div>
@@ -142,8 +169,29 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            mirror: true
+        });
+    </script>
 
     <!-- Custom scripts for this template -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <script>
+        anime({
+            targets: 'path',
+            strokeDashoffset: [anime.setDashoffset, 0],
+            easing: 'easeInOutSine',
+            duration: 1500,
+            delay: function (el, i) {
+                return i * 250
+            },
+            direction: 'alternate',
+            loop: true
+        });
+    </script>
     <script src="js/clean-blog.min.js"></script>
 
 </body>

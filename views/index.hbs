@@ -23,6 +23,7 @@
         rel='stylesheet' type='text/css'>
     <link rel="icon" href="/img/apple-business-clipboard-2371737.jpg" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
 </head>
@@ -39,7 +40,7 @@
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
                         <h1>Hi!</h1>
-                        <span class="subheading">Welcome to the blog {{user.username}}.</span>
+                        <span class="subheading" data-aos="fade-right">Welcome to the blog {{user.username}}.</span>
                     </div>
                 </div>
             </div>
@@ -88,6 +89,12 @@
         document.getElementsByClassName('copyright')[0].innerHTML = data;
     </script>
     <!-- Custom scripts for this template -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        });
+    </script>
     <script src="js/clean-blog.min.js"></script>
 </body>
 

@@ -11,7 +11,7 @@
     <title>Personal Blog</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,6 +20,7 @@
     <link
         href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
         rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="icon" href="img/blog-buttons-characters-1591056.jpg" type="image/gif" sizes="16x16">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -42,25 +43,26 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-top:10px;">
                         <a class="nav-link" href="index" data-aos="fade-down" data-aos-duration="1000"
                             data-aos-delay="500" data-aos-offset='100'>Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-top:10px;">
                         <a class="nav-link" href="about" data-aos="fade-down" data-aos-duration="1000"
                             data-aos-delay="600" data-aos-offset='200'>About</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-top:10px;">
                         <a class="nav-link" href="post" data-aos="fade-down" data-aos-duration="1000"
                             data-aos-delay="700" data-aos-offset='300'>Sample Post</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-top:10px;">
                         <a class="nav-link" href="contact" data-aos="fade-down" data-aos-duration="1000"
                             data-aos-delay="800" data-aos-offset='400'>Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/login" data-aos="fade-down" data-aos-duration="1000"
-                            data-aos-delay="900" data-aos-offset='500'>Login</a>
+                    <li class="nav-item" style="margin-left:20px;">
+                        <a class="nav-link btn btn-outline-default btn-rounded waves-effect" href="/auth/login"
+                            data-aos="fade-down" data-aos-duration="1000" data-aos-delay="900"
+                            data-aos-offset='500'>Login <span class="spinner-grow spinner-grow-sm"></span></a>
                     </li>
                 </ul>
             </div>
@@ -105,7 +107,7 @@
                                     line-height: 0.7em;right: -0.12em;top: -0.3em;">Hi</span>
                                     <span class="letters bang" style="font-size: 1.2em;
                                     top: auto;position:relative;
-                                    left: -0.06em;z-index:2;">!</span>
+                                    left: -0.06em;z-index:2;" id="bang">!</span>
                                 </span>
                                 <span class="circle circle-white"
                                     style="position: absolute;left: 0;right: 0;margin: auto;top: 0;
@@ -195,8 +197,9 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -204,89 +207,10 @@
             mirror: true
         });
     </script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
     <!-- Custom scripts for this template -->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
-    <script>
-        setTimeout(
-            () => {
-                document.getElementById('blogSvg').style.visibility = 'visible';
-                anime({
-                    targets: 'path',
-                    strokeDashoffset: [anime.setDashoffset, 0],
-                    easing: 'easeInOutSine',
-                    duration: 1500,
-                    delay: function (el, i) {
-                        return i * 250
-                    },
-                    direction: 'alternate',
-                    loop: true
-                });
-            }, 2000
-        )
-    </script>
-    <script>
-        setTimeout(
-            () => {
-                document.getElementsByClassName('subheading')[0].style.visibility = 'visible';
-                anime.timeline({
-                        loop: true
-                    })
-                    .add({
-                        targets: '.ml8 .circle-white',
-                        scale: [0, 1.5],
-                        opacity: [1, 0],
-                        easing: "easeInOutExpo",
-                        rotateZ: 360,
-                        duration: 1100,
-                        backgroundColor: '#76D7C4',
-                        elasticity: function (el, i, l) {
-                            return 200 + (200 * i);
-                        },
-                        delay: function (el, i, l) {
-                            return 100 * i;
-                        }
-                    }).add({
-                        targets: '.ml8 .circle-container',
-                        scale: [0, 1],
-                        duration: 1100,
-                        easing: "easeInOutQuad",
-                        offset: '-= 1000 '
-                    }).add({
-                        targets: '.ml8 .circle-dark',
-                        scale: [0, 1],
-                        duration: 1100,
-                        easing: "easeOutExpo",
-                        offset: '-=600'
-                    }).add({
-                        targets: '.ml8 .letters-left',
-                        scale: [0, 1],
-                        duration: 1200,
-                        offset: '-=550'
-                    }).add({
-                        targets: '.ml8 .bang',
-                        scale: [0, 1],
-                        rotateZ: [45, 15],
-                        duration: 1200,
-                        offset: '-=1000'
-                    }).add({
-                        targets: '.ml8',
-                        opacity: 0,
-                        duration: 1000,
-                        easing: "easeOutExpo",
-                        delay: 1400
-                    });
-
-                anime({
-                    targets: '.ml8 .circle-dark-dashed',
-                    rotateZ: 360,
-                    duration: 8000,
-                    easing: "linear",
-                    loop: true
-                });
-            }, 2000
-        )
-    </script>
+    <script src="/animations/staticIndex.js"></script>
     <script src="js/clean-blog.min.js"></script>
 
 </body>

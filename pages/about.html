@@ -11,7 +11,7 @@
   <title>About</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +22,7 @@
     rel='stylesheet' type='text/css'>
   <link rel="icon" href="/img/apple-business-clipboard-2371737.jpg" type="image/gif" sizes="16x16">
   <!-- Custom styles for this template -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="css/clean-blog.min.css" rel="stylesheet">
 
 </head>
@@ -31,7 +32,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="about">About</a>
+      <a class="navbar-brand" href="about" data-aos="fade-right" data-aos-duration="1000">About</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -41,19 +42,23 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index">Home</a>
+            <a class="nav-link" href="index" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about">About</a>
+            <a class="nav-link" href="about" data-aos="fade-down" data-aos-duration="1200"
+              data-aos-delay="600">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="post">Sample Post</a>
+            <a class="nav-link" href="post" data-aos="fade-down" data-aos-duration="1300" data-aos-delay="700">Sample
+              Post</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact">Contact</a>
+            <a class="nav-link" href="contact" data-aos="fade-down" data-aos-duration="1400"
+              data-aos-delay="800">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/auth/login">Login</a>
+            <a class="nav-link" href="/auth/login" data-aos="fade-down" data-aos-duration="1500"
+              data-aos-delay="900">Login</a>
           </li>
         </ul>
       </div>
@@ -61,7 +66,8 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/about-bg.jpg')">
+  <header class="masthead"
+    style="background-image: url('img/about-bg.jpg');background-size:cover;background-attachment: fixed;background-position: center center;">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -107,24 +113,24 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
+            <li class="list-inline-item" id="twitter_logo">
+              <a href="#" style="color:#00acee;">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>
-            <li class="list-inline-item">
-              <a href="#">
+            <li class="list-inline-item" id="facebook_logo">
+              <a href="#" style="color:#3b5998;">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>
-            <li class="list-inline-item">
-              <a href="#">
+            <li class="list-inline-item" id="github_logo">
+              <a href="#" style="color:#211f1f;">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -140,9 +146,19 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      mirror: true
+    });
+  </script>
   <!-- Custom scripts for this template -->
+  <script src="/animations/footer.js"></script>
   <script src="js/clean-blog.min.js"></script>
 
 </body>

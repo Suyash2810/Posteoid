@@ -4,7 +4,6 @@ const validator = require('validator');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 
-
 var userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -16,15 +15,24 @@ var userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true,
-        validator: (value) => {
-            return validator.isEmail(value);
+        validate: {
+            validator: () => {
+                return validator.isEmail(value);
+            },
+            message: 'Email is not valid.'
         }
     },
     password: {
         type: String,
         required: true,
         maxlength: 12,
-        minlength: 6
+        minlength: 6,
+        validate: {
+            validator: (value) => {
+                return validator.isUppercase(value);
+            },
+            message: 'Password is not having an uppercase letter.'
+        }
     },
     image: {
         type: String

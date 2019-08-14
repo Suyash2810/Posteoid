@@ -441,7 +441,7 @@ app.get('/auth/login', (request, response) => {
                 }
             )
         }
-
+        response.clearCookie('errors');
         response.render('login.hbs', {
             errData,
             logoutObj

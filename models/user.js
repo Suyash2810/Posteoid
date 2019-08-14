@@ -3,6 +3,15 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
+const passwordValidator = require('password-validator');
+
+var passwordSchema = new passwordValidator();
+
+passwordSchema
+    .has().lowercase() // Must have lowercase letters
+    .has().digits() // Must have digits
+    .has().not().spaces() // Should not have spaces
+    .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 var userSchema = new mongoose.Schema({
     username: {
@@ -32,6 +41,12 @@ var userSchema = new mongoose.Schema({
                 return validator.isUppercase(value);
             },
             message: 'Password is not having an uppercase letter.'
+        },
+        validate: {
+            validator: (value) => {
+                return passwordSchema.validate(value);
+            },
+            message: "Password must have a lowercase letter and a digit with no whitespaces."
         }
     },
     image: {

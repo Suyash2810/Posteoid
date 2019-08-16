@@ -71,8 +71,9 @@ background-size:cover;background-position: center center;background-attachment: 
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>Contact Me</h1>
-            <span class="subheading">Have questions? I have answers.</span>
+            <h1 data-aos="fade-up" data-aos-duration="1000">Contact Me</h1>
+            <span class="subheading" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Have questions? I
+              have answers.</span>
           </div>
         </div>
       </div>
@@ -82,7 +83,7 @@ background-size:cover;background-position: center center;background-attachment: 
   <!-- Main Content -->
   <div class="container-fluid">
     <div class="row">
-      <div class="well mx-auto" style="background-color: white;border-radius:2em;opacity: 0.9;">
+      <div class="well mx-auto" style="background-color: white;border-radius:2em;opacity: 0.9;" id="contact_form">
         <div class="col-lg-8 col-md-10 mx-auto">
           <p style="color:black;opacity:1;">Want to get in touch? Fill out the form below to send me a message and I
             will get back
@@ -118,7 +119,7 @@ background-size:cover;background-position: center center;background-attachment: 
             </div>
             <br>
             <div class="form-group my-4 text-center">
-              <button class="btn aqua-gradient" type="submit">Send</button>
+              <button class="btn aqua-gradient" type="submit" id="send_btn">Send</button>
             </div>
           </form>
         </div>
@@ -181,7 +182,7 @@ background-size:cover;background-position: center center;background-attachment: 
   <!-- Custom scripts for this template -->
   <script src="/animations/footer.js"></script>
   <script src="/animations/HeaderAnim.js"></script>
-
+  <script src="/animations/contactPage.js"></script>
   <!-- Contact Form JavaScript -->
   <script src="js/jqBootstrapValidation.js"></script>
   <script src="js/contact_me.js"></script>

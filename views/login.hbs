@@ -40,7 +40,8 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading">
-                        <h1 data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">Login</h1>
+                        <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" style="font-size: 4em;">
+                            Login</h1>
                     </div>
                 </div>
             </div>
@@ -75,9 +76,13 @@
         </div>
 
 
-        <div class="well mx-auto" style="background-color: white;border-radius:2em;opacity: 0.9;">
+        <div class="well mx-auto border border-info w-75"
+            style="background-color: white;border-radius:2em;opacity: 0.9;" id="login_form">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
+                    <p class="text-center mx-auto">Already have an account? <code>Login else Register!</code>
+                    </p>
+                    <br>
                     <form action="/users/login" method="POST" encType="multipart/form-data">
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
@@ -151,7 +156,7 @@
             mirror: true
         });
     </script>
-
+    <script src="/animations/dynamicPages/loginAnim.js"></script>
     <!-- Custom scripts for this template -->
     <script src="/js/clean-blog.min.js"></script>
 </body>

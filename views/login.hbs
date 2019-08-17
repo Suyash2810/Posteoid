@@ -28,6 +28,29 @@
     <!-- Custom styles for this template -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <style>
+        #mySidenav a {
+            position: absolute;
+            left: -80px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            line-height: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #mySidenav a:hover {
+            left: 0;
+        }
+
+        #about {
+            top: 20px;
+            background-color: #76D7C4;
+        }
+    </style>
 </head>
 
 <body
@@ -37,6 +60,9 @@
     <header class="masthead" style="background-image: url('/img/computer-keyboard-facts-indoors-968631.jpg')">
         <div class="overlay"></div>
         <div class="container-fluid">
+            <div id="mySidenav" class="sidenav">
+                <a href="/index" id="about">Home</a>
+            </div>
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading">

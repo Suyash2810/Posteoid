@@ -25,6 +25,46 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
+    <style>
+        .text-anim {
+            position: relative;
+            font-weight: 200;
+            font-size: 4em;
+        }
+
+        .text-anim .text-wrapper {
+            position: relative;
+            display: inline-block;
+            padding-top: 0.2em;
+            padding-right: 0.05em;
+            padding-bottom: 0.1em;
+            overflow: hidden;
+        }
+
+        .text-anim .letter {
+            transform-origin: 0% 100%;
+            display: inline-block;
+            line-height: 1em;
+        }
+
+        .text-anim2 {
+            position: relative;
+            font-weight: 200;
+            font-size: 2em;
+        }
+
+        .text-anim2 .text-wrapper2 {
+            position: relative;
+            display: inline-block;
+
+            overflow: hidden;
+        }
+
+        .text-anim2 .letter2 {
+            transform-origin: 0% 100%;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +73,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             {{#if user.image}}
-            <a class="navbar-brand" href="/"><img src="{{user.image}}" width="60px" height="20px"
+            <a class="navbar-brand" href="/"><img src="{{user.image}}" width="30px" height="10px"
                     class="img-fluid rounded-circle"></a>
             {{else}}
             <a class="navbar-brand" href="/" style="font-weight: 200;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
@@ -74,9 +114,19 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Hi!</h1>
-                        <span class="subheading" data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-delay="400">Welcome to the blog {{user.username}}.</span>
+                        <h1 class="text-anim">
+                            <span class="text-wrapper">
+                                <span class="letters">Hi!</span>
+                            </span>
+                        </h1>
+                        <span class="subheading">
+                            <h3 class="text-anim2">
+                                <span class="text-wrapper2">
+                                    <span class="letters2">Welcome to the blog</span>
+                                </span>
+                            </h3>
+                            <span class="badge badge-info">{{user.username}}</span>
+                        </span>
                     </div>
                 </div>
             </div>

@@ -27,22 +27,40 @@
     <!-- Custom styles for this template -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <style>
+        #mySidenav a {
+            position: absolute;
+            left: -80px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            z-index: 1000;
+        }
+
+        #mySidenav a:hover {
+            left: 0;
+        }
+
+        #about {
+            top: 20px;
+            background-color: #76D7C4;
+        }
+    </style>
 </head>
 
 <body
     style="background-image:url('/img/adventure-antique-blank-269923.jpg');background-size:cover;background-attachment:fixed;background-repeat:no-repeat;">
 
-    <nav class="navbar" style="position:absolute;z-index:1000;width:100%;color:whitesmoke;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" style="color: whitesmoke;"><i class="fa fa-arrow-left"></i></a>
-            </div>
-        </div>
-    </nav>
-
     <header class="masthead" style="background-image: url('/img/art-asia-bali-737533.jpg')">
         <div class="overlay"></div>
         <div class="container-fluid" id="masthead_container">
+            <div id="mySidenav" class="sidenav">
+                <a href="/" id="about">Home</a>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-heading">

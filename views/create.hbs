@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     {{!--
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template -->
     {{!--
@@ -25,6 +25,7 @@
         rel='stylesheet' type='text/css'>
     <link rel="icon" href="/img/blur-card-cardboard-211290.jpg" type="image/gif" sizes="16x16">
     <!-- Custom styles for this template -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="/css/clean-blog.min.css" rel="stylesheet">
 </head>
 
@@ -40,7 +41,7 @@
 
     <header class="masthead" style="background-image: url('/img/computer-device-electronics-2237797.jpg')">
         <div class="overlay"></div>
-        <div class="container">
+        <div class="container-fluid" id="masthead_container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-heading">
@@ -53,7 +54,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2 mx-auto">
                 <form action="/post/store" method="POST" enctype="multipart/form-data">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
@@ -92,16 +93,55 @@
         </div>
     </div>
 
-    {{> footer }}
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item" id="twitter_logo">
+                            <a href="#" style="color:#00acee;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item" id="facebook_logo">
+                            <a href="#" style="color:#3b5998;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item" id="github_logo">
+                            <a href="#" style="color:#211f1f;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    {{!--
-    <script src="../public/vendor/jquery/jquery.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    {{!--
-    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        });
+    </script>
+    <script src="/animations/footer.js"></script>
+    <script src="/animations/dynamicPages/dynamicCreate.js"></script>
     <!-- Custom scripts for this template -->
     <script src="/js/clean-blog.min.js"></script>
 

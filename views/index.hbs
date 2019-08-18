@@ -134,30 +134,39 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                {{#each data}}
-
-                {{#if this.username }}
-                <div class="post-preview">
-                    <a href="post/{{this._id}}">
-                        <h2 class="post-title">
-                            {{ this.title }}
-                        </h2>
-                    </a>
-                    {{this.description}}
-                    <br>
-                    {{this.username}} - {{this.createdAt}}
+            <div class="col-md-10 col-md-offset-1 mx-auto">
+                <div class="card-columns">
+                    {{#each data}}
+                    {{#if this.username}}
+                    <div class="card" style="position:relative;" data-aos="zoom-in" data-aos-duration="1000"
+                        data-aos-delay="900">
+                        <img src="{{this.image}}" class="card-img-top" alt="Post"
+                            style="box-shadow: 0px 0px 5px 5px lightgrey;">
+                        <svg class="card__svg" viewBox="0 0 800 500" style="position:absolute;opacity:0.5;top:0;">
+                            <path class="card__line"
+                                d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400"
+                                stroke="pink" stroke-width="7" fill="transparent" />
+                        </svg>
+                        <div class="card-body">
+                            <div class="card-title" style="font-weight:bold;">
+                                {{this.title}}
+                            </div>
+                            <hr>
+                            <div class="card-text" style="text-align:center;">
+                                {{this.description}}
+                                <hr>
+                                Posted by <code>{{this.username}}</code> on {{this.createdAt}}
+                                <br>
+                                <a href="post/{{this._id}}" class="stretched-link btn btn-pink btn-sm"
+                                    style="margin-top:30px;">Post</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/each}}
                 </div>
-                {{/if}}
-
-                {{/ each}}
-                <!-- Pager -->
-                {{!-- <div class="clearfix">
-                    <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-                </div> --}}
             </div>
         </div>
     </div>

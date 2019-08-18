@@ -112,7 +112,26 @@ function headerAnim() {
     )
 }
 
+function postSvgAnimation() {
+    setTimeout(
+        () => {
+            anime({
+                targets: 'path',
+                strokeDashoffset: [anime.setDashoffset, 0],
+                easing: 'easeInOutSine',
+                duration: 1500,
+                delay: function (el, i) {
+                    return i * 1250
+                },
+                direction: 'alternate',
+                loop: true
+            });
+        }, 2000
+    );
+}
+
 // Function Calling
 setMastheadHeight();
 headerBottomHoverAnim();
 headerAnim();
+postSvgAnimation();

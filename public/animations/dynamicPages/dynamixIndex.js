@@ -69,7 +69,7 @@ function headerAnim() {
                     targets: '.text-anim',
                     opacity: 0,
                     duration: 1000,
-                    delay: 1500,
+                    delay: 60000,
                     easing: 'easeInOutExpo'
                 });
         }, 2000
@@ -105,7 +105,7 @@ function headerAnim() {
                     targets: '.text-anim2',
                     opacity: 0,
                     duration: 1000,
-                    delay: 2500,
+                    delay: 60000,
                     easing: 'easeInOutExpo'
                 });
         }, 2000

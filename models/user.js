@@ -25,7 +25,7 @@ var userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true,
         validate: {
-            validator: () => {
+            validator: (value) => {
                 return validator.isEmail(value);
             },
             message: 'Email is not valid.'

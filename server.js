@@ -1034,6 +1034,15 @@ app.get('/delete/comment/confirm/:id', async (request, response) => {
 
 });
 
+app.get('/upload_image', authentication, (request, response) => {
+
+    if (request.user) {
+        response.render('uploadImage.hbs');
+    } else {
+        response.redirect('/');
+    }
+})
+
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);
 });

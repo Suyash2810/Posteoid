@@ -57,9 +57,9 @@
         #card {
             border-radius: 10px;
             border-top-left-radius: 10px;
-            width: 300px;
+            width: 350px;
             margin: auto;
-            margin-top: 20%;
+            margin-top: 10%;
             box-shadow: 3px 3px 2px 2px #76D7C4;
         }
 
@@ -110,6 +110,20 @@
                                 <hr>
                                 <button type="submit" class="btn btn-pink">Upload</button>
                             </form>
+                            {{#if UploadObj}}
+                            {{#if UploadObj.success}}
+                            <div class="alert alert-success alert-dismissible" style="text-align:center;">
+                                {{UploadObj.success}}
+                                <a href="#" class="float-right close" data-dismiss="alert">&times;</a>
+                            </div>
+                            {{/if}}
+                            {{#if UploadObj.err}}
+                            <div class="alert alert-danger alert-dismissible" style="text-align: center;">
+                                {{UploadObj.err}}
+                                <a href="#" class="float-right close" data-dismiss="alert">&times;</a>
+                            </div>
+                            {{/if}}
+                            {{/if}}
                         </div>
                     </div>
                 </div>

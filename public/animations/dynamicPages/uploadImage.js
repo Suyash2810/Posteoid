@@ -10,7 +10,7 @@ function flip() {
 
     anime({
         targets: card,
-        scale: [0, 1],
+        scale: [0, 0.9],
         rotateY: 360,
         duration: function (el, i, l) {
             return 6000 + 300 * i;

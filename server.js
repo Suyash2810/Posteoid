@@ -1037,7 +1037,21 @@ app.get('/delete/comment/confirm/:id', async (request, response) => {
 app.get('/upload_image', authentication, (request, response) => {
 
     if (request.user) {
-        response.render('uploadImage.hbs');
+
+        let uploadObj = request.cookies.uploadStatus;
+        let UploadObj = {}
+
+        if (uploadObj) {
+            Object.keys(uploadObj).forEach(
+                (key) => {
+                    UploadObj[key] = uploadObj[key];
+                }
+            );
+        }
+
+        response.render('uploadImage.hbs', {
+            UploadObj
+        });
     } else {
         response.redirect('/');
     }

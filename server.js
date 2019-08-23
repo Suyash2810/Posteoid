@@ -1041,7 +1041,72 @@ app.get('/upload_image', authentication, (request, response) => {
     } else {
         response.redirect('/');
     }
-})
+});
+
+app.post('/postImage/upload_image', authentication, (request, response) => {
+
+    if (request.user) {
+
+        if (request.files) {
+
+            let {
+                image
+            } = request.files;
+
+            image.mv(path.resolve(__dirname, 'public/userImages', image.name), (error) => {
+
+                let body = {
+                    image: `/userImages/${image.name}`
+                }
+
+                User.findOneAndUpdate({
+                        _id: request.user._id
+                    }, {
+                        $set: body
+                    }, {
+                        new: true
+                    }).then(
+                        (result) => {
+                            if (result) {
+
+                                let uploadSuccess = {
+                                    success: "The image has been uploaded successfully"
+                                }
+
+                                response.cookie('uploadStatus', uploadSuccess);
+                                response.redirect('/upload_image');
+                            } else {
+                                let uploadError = {
+                                    err: "The image could not be updated."
+                                }
+                                response.cookie('uploadStatus', uploadError);
+
+                                response.redirect('/upload_image');
+                            }
+                        }
+                    )
+                    .catch(
+                        (error) => {
+                            let uploadError = {
+                                err: "The image could not be updated."
+                            }
+                            response.cookie('uploadStatus', uploadError);
+
+                            ressponse.redirect('/upload_image');
+                        }
+                    )
+            });
+        } else {
+            let notSent = {
+                err: "The file was not submitted successfully."
+            }
+
+            response.cookie('uploadStatus', notSent);
+
+            response.redirect('/upload_image');
+        }
+    }
+});
 
 app.listen(port, () => {
     console.log(`Connected to the server at port: ${port}.`);

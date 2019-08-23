@@ -20,6 +20,7 @@
         rel='stylesheet' type='text/css'>
     <link rel="icon" href="/img/apple-business-clipboard-2371737.jpg" type="image/gif" sizes="16x16">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
     <style>
         #header {
             background-image: url('/img/blue-blue-background-botanical-1445416.jpg');
@@ -41,6 +42,7 @@
             color: white;
             line-height: 15px;
             border-radius: 0 5px 5px 0;
+            z-index: 3000;
         }
 
         #mySidenav a:hover {
@@ -51,6 +53,31 @@
             top: 20px;
             background-color: #76D7C4;
         }
+
+        #card {
+            border-radius: 10px;
+            border-top-left-radius: 10px;
+            width: 300px;
+            margin: auto;
+            margin-top: 20%;
+            box-shadow: 3px 3px 2px 2px #76D7C4;
+        }
+
+        #cardBody {
+            background-color: transparent;
+            text-align: center;
+        }
+
+        #card_title {
+            font-weight: 100;
+            font-size: 1.5rem;
+            font-family: 'Comfortaa', cursive;
+            font-size-adjust: initial;
+        }
+
+        .custom_file label {
+            background: transparent;
+        }
     </style>
 </head>
 
@@ -58,28 +85,32 @@
 
     <div class="container-fluid" id="header">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div id="mySidenav" class="sidenav">
                     <a href="/" id="about">Home</a>
                 </div>
-
-                <div style="width: 300px;float:right;" class="mt-5 mr-5">
-                    <form class="text-center border border-light p-5" action="#!">
-
-                        <p class="h4 mb-4">Upload Image</p>
-
-                        <input type="file" class="form-control mb-4" placeholder="Image">
-
-                        <div class="d-flex justify-content-around">
-                            <div>
-                                <!-- Forgot password -->
-                                <a href="">Forgot password?</a>
+            </div>
+            <div class="col-md-6">
+                <div class="mt-5" id="main_card">
+                    <div class="card shadow" id="card">
+                        <img src="/img/post-sample-image.jpg" alt="" class="card-img-top rounded-top">
+                        <div class="card-body" id="cardBody">
+                            <div class="card-title"><span id="card_title"><code>Upload Image</code>
+                                </span>
                             </div>
+                            <hr>
+                            <form action="/upload_image/post" method="post" id="form">
+                                <div class="custom-file">
+                                    <label class="custom-file-label" for="customFile" style="text-align: left;">Choose
+                                        file</label>
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                </div>
+                                <br>
+                                <hr>
+                                <button type="submit" class="btn btn-pink">Upload</button>
+                            </form>
                         </div>
-
-                        <!-- Sign in button -->
-                        <button class="btn btn-info btn-block my-4" type="submit">Upload</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,6 +128,7 @@
             once: true
         });
     </script>
+    <script src="/animations/dynamicPages/uploadImage.js"></script>
 </body>
 
 </html>

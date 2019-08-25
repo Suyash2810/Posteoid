@@ -73,41 +73,45 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 mx-auto">
-                <form action="/post/store" method="POST" enctype="multipart/form-data">
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Username</label>
-                            <input type="text" name="username" placeholder="Username" class="form-control">
+            <div class="well well-md border border-info w-100" style="background-color: white;border-radius:2em;">
+                <div class="col-md-8 col-md-offset-2 mx-auto">
+                    <h2 class="text-center mt-5"><code>Enter the details.</code><span
+                            style="color:thistle;">&hearts;</span></h2>
+                    <form action="/post/store" method="POST" enctype="multipart/form-data">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Username</label>
+                                <input type="text" name="username" placeholder="Username" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Title</label>
-                            <input type="text" name="title" placeholder="Title" class="form-control">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Title</label>
+                                <input type="text" name="title" placeholder="Title" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Description</label>
-                            <input type="text" name="description" placeholder="Description" class="form-control">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Description</label>
+                                <input type="text" name="description" placeholder="Description" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Content</label>
-                            <textarea name="content" id="contentData" placeholder="Content ..." cols="30" rows="10"
-                                class="form-control"></textarea>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Content</label>
+                                <textarea name="content" id="contentData" placeholder="Content ..." cols="30" rows="10"
+                                    class="form-control"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="file" name="image" class="form-control-file">
-                    </div>
-                    <div class="form-group my-4 text-center">
-                        <button class="btn btn-primary" type="submit">Create Post</button>
-                    </div>
-                </form>
-                <br>
+                        <div class="form-group mt-3">
+                            <input type="file" name="image" class="form-control-file">
+                        </div>
+                        <div class="form-group my-4 text-center">
+                            <button class="btn btn-primary" type="submit">Create Post</button>
+                        </div>
+                    </form>
+                    <br>
+                </div>
             </div>
         </div>
     </div>

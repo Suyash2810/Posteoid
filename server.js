@@ -74,6 +74,7 @@ app.get('/', authentication, async (request, response) => {
         response.clearCookie('updateSuccess');
         response.clearCookie('commentDelete');
         response.clearCookie('commentDelErr');
+        response.clearCookie('uploadStatus');
         response.render('index', {
             data,
             user

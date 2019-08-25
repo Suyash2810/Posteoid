@@ -43,6 +43,28 @@
             border-bottom: 1px dashed #efefef;
             margin-bottom: 25px;
         }
+
+        #mySidenav a {
+            position: absolute;
+            left: -80px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            z-index: 1000;
+        }
+
+        #mySidenav a:hover {
+            left: 0;
+        }
+
+        #about {
+            top: 20px;
+            background-color: #76D7C4;
+        }
     </style>
 </head>
 
@@ -50,8 +72,8 @@
 
     <nav class="navbar" style="position:absolute;z-index:1000;width:100%;color:whitesmoke;">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" style="color: whitesmoke;"><i class="fa fa-arrow-left"></i></a>
+            <div id="mySidenav" class="sidenav">
+                <a href="/" id="about">Home</a>
             </div>
         </div>
     </nav>

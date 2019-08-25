@@ -103,8 +103,9 @@
                                     class="form-control"></textarea>
                             </div>
                         </div>
-                        <div class="form-group mt-3">
-                            <input type="file" name="image" class="form-control-file">
+                        <div class="custom-file mt-3">
+                            <label for="file" class="custom-file-label" style="text-align:left;">Choose image!</label>
+                            <input type="file" name="image" class="custom-file-input">
                         </div>
                         <div class="form-group my-4 text-center">
                             <button class="btn btn-primary" type="submit">Create Post</button>
@@ -180,6 +181,12 @@
         var time = moment().format('YYYY');
         var data = `Copyright &copy; Our Blog ${time}`;
         document.getElementsByClassName('copyright')[0].innerHTML = data;
+    </script>
+    <script>
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
     </script>
 </body>
 

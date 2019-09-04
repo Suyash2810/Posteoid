@@ -590,6 +590,31 @@ app.get('/post/pdf/:id', async (req, res) => {
 
     let post = await Post.findById(id);
 
+    let toUpdateData = {
+        pdfDownloads: post.pdfDownloads + 1
+    }
+
+    Post.findOneAndUpdate({
+        _id: id
+    }, {
+        $set: toUpdateData
+    }, {
+        new: true
+    }).then(
+        (result) => {
+            if (!result) {
+                console.log("Pdf Downloads not updated.");
+            } else {
+                console.log("\n pdfDownloads have been incremented: ", result.pdfDownloads);
+            }
+        }
+    ).catch(
+        (error) => {
+            response.redirect('/');
+        }
+    );
+
+
     function generatePdf(docDefinition, callback) {
         try {
             const fontDescriptors = {

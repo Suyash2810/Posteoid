@@ -65,6 +65,13 @@
             top: 20px;
             background-color: #76D7C4;
         }
+
+        header {
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
     </style>
 </head>
 
@@ -79,7 +86,7 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('{{ post.image }}')">
+    <header class="masthead" style="background-image: url('{{ post.image }}');" id="masthead_post">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">

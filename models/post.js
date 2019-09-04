@@ -29,6 +29,10 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    pdfDownloads: {
+        default: 0,
+        type: Number
+    },
     createdAt: {
         type: String,
         default: moment().format("MMM Do YY").toString()

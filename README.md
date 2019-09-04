@@ -120,3 +120,40 @@ A text editor has been included where the user can use different styles, format,
 First Image            |  Second Image            |  Third Image          
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Home](./public/img/readme_imgs/EditorS.png)  |  ![Home](./public/img/readme_imgs/EditorSS.png)  |  ![Home](./public/img/readme_imgs/EditorSSS.png)
+
+
+## Prerequisites
+
+To run the project in local enviroment one will need the following things: 
+
+**Node Package Manager** to be installed in the system. To install it in the system click [here](https://www.npmjs.com/get-npm). 
+
+**NodeJs** is required. Download from [here](https://nodejs.org/en/download/)
+
+**MongoDB** is required to store all the data used in the app. Download from [here](https://www.mongodb.com/download-center)
+
+Any text editor would work, I prefer **Visual Studio Code**. Download from [here](https://code.visualstudio.com/download)
+
+Now when the above are downloaded successfully, open the project in VSC and using the terminal run the command **npm install**. This will install all the required dependencies. 
+
+## Running the program
+
+To run the app follow the steps given below:
+
+```
+1. Open a terminal
+2. Go the project directory
+3. Run the command 'nodemon server.js'
+4. Open the browser and go to url 'localhost:3000'
+4. The app will open.
+```
+
+## Testing
+
+To test the model files run the command _npm run test-watch_.
+
+## Author
+
+* **Suyash Awasthi** - *Initial work* - [suyash2810](https://github.com/suyash2810)
+
+

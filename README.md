@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Posteoid is a traditional application built using NodeJs. It is simple, fast, secure Blog App with beautiful, responsive and user-friendly interface where users can create as many posts after creating their profile. The app also provides the functionality of editing and deleting the posts by the creator of the post. The posts made are public and anyone can read the posts and comment on them or download them as pdf file. 
+Posteoid is a traditional application built using NodeJs. It is **simple**, **fast**, **secure** Blog App with _beautiful_, _responsive_ and _user-friendly_ interface where users can create as many posts after creating their profile. 
+
+The app also provides the functionality of editing and deleting the posts by the creator of the post. The posts made are public and anyone can read the posts and comment on them or download them as pdf file. 
 
 ## Description
 
@@ -76,7 +78,28 @@ Appropriate error or success messages are displayed.
 
 The pdf can also be generated for the post and downloaded. The style and alignment of the content has been maintained in the generated pdf file.
 
-###### Comment Section
+##### Comment Section
+
+There is a comment section below the post where one can make comments on the post. See below:
+
+![Post](./public/img/readme_imgs/CommentSS.png)
+
+>Following are the **features** of the Comment Panel.
+
+1. Anyone can comment on the post.
+2. The comment can also be deleted. Only the respective user can delete the comment. Others will not be allowed.
+3. The user image is automatically loaded from the database in the comment section.
+4. The feature for adding emojis to the comment has also been provided. Further using _colon_ symbol followed by emoticon name the sugesstions are given in the comment section. See the image **Emoji1** and **Emoji2** at the end.
+5. Any creator of a post would like to see the number of times the post has been viewed or the number of times the pdf has been download. Therefore a feature has been added which keeps a record of the **views** of a particular post and the **pdf downloads**. This information is _only_ displayed to the _user_. See the image below.
 
 
+Emoji1         |  Emoji2
+:-------------------------:|:-------------------------:
+![Home](./public/img/readme_imgs/EmojiSS.png)  |  ![Home](./public/img/readme_imgs/EmojiSSS.png)
 
+```
+The image below shows the total number of views by other users on a particular post and the number of downloads of the pdf. Only the creator can see this.
+
+```
+
+![Post](./public/img/readme_imgs/ViewsSS.png)

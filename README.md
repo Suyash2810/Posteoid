@@ -157,3 +157,6 @@ To test the model files run the command _npm run test-watch_.
 * **Suyash Awasthi** - *Initial work* - [suyash2810](https://github.com/suyash2810)
 
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Suyash2810/Posteoid/blob/master/LICENSE) file for details.

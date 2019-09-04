@@ -47,6 +47,8 @@ describe("Post Model test", () => {
         expect(post).to.have.property('content').to.equal('foofoofoo');
         expect(post).to.have.property('username').to.equal('fofo');
         expect(post).to.have.property('creator_id').to.equal('sample_id');
+        expect(post).to.have.property('views').to.equal(0);
+        expect(post).to.have.property('pdfDownloads').to.equal(0);
     });
 
 });

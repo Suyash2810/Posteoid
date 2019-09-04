@@ -274,7 +274,8 @@ app.get('/post/:id', authentication, async (request, response) => {
 
         let UpdatedPost = await Post.findById(request.params.id);
         let views = {
-            views: UpdatedPost.views
+            views: UpdatedPost.views,
+            pdfGens: UpdatedPost.pdfDownloads
         }
 
         let disableView = {

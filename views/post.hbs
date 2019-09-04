@@ -270,6 +270,10 @@
                         {{#if views.views}}
                         <div class="panel-footer" style="background-color: transparent;">
                             <span class="label label-info">Total Views: {{views.views}}</span>
+                            &nbsp;
+                            {{#if views.pdfGens}}
+                            <span class="label label-info">Total PDF Downloads: {{views.pdfGens}}</span>
+                            {{/if}}
                         </div>
                         {{/if}}
                         {{/if}}

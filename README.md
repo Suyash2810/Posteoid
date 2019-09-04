@@ -98,8 +98,25 @@ Emoji1         |  Emoji2
 ![Home](./public/img/readme_imgs/EmojiSS.png)  |  ![Home](./public/img/readme_imgs/EmojiSSS.png)
 
 ```
-The image below shows the total number of views by other users on a particular post and the number of downloads of the pdf. Only the creator can see this.
+The image below shows the total number of views by other users on a particular post and the number 
+of downloads of the pdf. Only the creator can see this.
 
 ```
 
-![Post](./public/img/readme_imgs/ViewsSS.png)
+![Post](./public/img/readme_imgs/ViewSS.png)
+
+### Create Post
+
+A user can create post here.
+
+First Image            |  Second Image
+:-------------------------:|:-------------------------:
+![Home](./public/img/readme_imgs/CreateSS.png)  |  ![Home](./public/img/readme_imgs/CreateSSS.png)
+
+#### Feature
+
+A text editor has been included where the user can use different styles, format, text-colors, background-colors to write the content. Further to set the header an image upload option has been provided. See the images below.
+
+First Image            |  Second Image            |  Third Image          
+:-------------------------:|:-------------------------:|:-------------------------:
+![Home](./public/img/readme_imgs/EditorS.png)  |  ![Home](./public/img/readme_imgs/EditorSS.png)  |  ![Home](./public/img/readme_imgs/EditorSSS.png)

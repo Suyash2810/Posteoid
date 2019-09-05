@@ -10,9 +10,7 @@
     <title>Edit Post</title>
 
     <!-- Bootstrap core CSS -->
-    {{!--
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template -->
     {{!--
@@ -26,6 +24,41 @@
     <link rel="icon" href="/img/blur-card-cardboard-211290.jpg" type="image/gif" sizes="16x16">
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+    <style>
+        #edit_well {
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        body {
+            background-image: url('/img/dark-green-detail-houseplant-2736497.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        #mySidenav a {
+            position: absolute;
+            left: -80px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            line-height: 15px;
+            border-radius: 0 5px 5px 0;
+            z-index: 1000;
+            top: 80px;
+            background-color: #76D7C4;
+        }
+
+        #mySidenav a:hover {
+            left: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,7 +67,10 @@
 
     <header class="masthead" style="background-image: url('/img/computer-device-electronics-2237797.jpg')">
         <div class="overlay"></div>
-        <div class="container">
+        <div class="container-fluid">
+            <div id="mySidenav" class="sidenav">
+                <a href="/post/{{post._id}}" id="about">Back</a>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-heading">
@@ -46,60 +82,93 @@
     </header>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <form action="/edit/post/{{postId.id}}" method="POST" enctype="multipart/form-data">
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Username</label>
-                            <input type="text" name="username" placeholder="{{post.username}}" class="form-control">
+        <div class="well" id="edit_well">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 mx-auto">
+                    <h4 style="margin-top: 50px;text-align:center;">Want to change something? <code>Edit Here</code>
+                    </h4>
+                    <form action="/edit/post/{{postId.id}}" method="POST" enctype="multipart/form-data">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Username</label>
+                                <input type="text" name="username" placeholder="{{post.username}}" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Title</label>
-                            <input type="text" name="title" placeholder="{{post.title}}" class="form-control">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Title</label>
+                                <input type="text" name="title" placeholder="{{post.title}}" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Description</label>
-                            <input type="text" name="description" placeholder="{{post.description}}"
-                                class="form-control">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Description</label>
+                                <input type="text" name="description" placeholder="{{post.description}}"
+                                    class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Content</label>
-                            <textarea name="content" id="contentData" placeholder="{{post.content}}" cols="30" rows="10"
-                                class="form-control"></textarea>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Content</label>
+                                <textarea name="content" id="contentData" placeholder="{{post.content}}" cols="30"
+                                    rows="10" class="form-control"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="file" name="image" class="form-control-file">
-                    </div>
-                    <div class="form-group my-4 text-center">
-                        <button class="btn btn-primary" type="submit">Edit Post</button>
-                    </div>
-                </form>
-                <br>
-                <a href="/" style="text-decoration:none;"><i class="fa fa-arrow-left"></i> Back to Home.</a>
-                &nbsp;
-                <a href="/post/{{post.id}}" style="text-decoration:none;"><i class="fa fa-arrow-left"></i> Back to
-                    Post.</a>
+                        <div class="custom-file mt-3">
+                            <label for="file" class="custom-file-label">Choose Image</label>
+                            <input type="text" name="image" class="custom-file-input">
+                        </div>
+                        <div class="form-group my-4 text-center">
+                            <button class="btn btn-primary" type="submit">Edit Post</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
         </div>
     </div>
 
-    {{> footer }}
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item" id="twitter_logo">
+                            <a href="#" style="color:#00acee;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item" id="facebook_logo">
+                            <a href="#" style="color:#3b5998;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item" id="github_logo">
+                            <a href="#" style="color:#211f1f;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
-    {{!--
-    <script src="../public/vendor/jquery/jquery.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    {{!--
-    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
 
     <!-- Custom scripts for this template -->
     <script src="/js/clean-blog.min.js"></script>
@@ -116,6 +185,21 @@
         var data = `Copyright &copy; Our Blog ${time}`;
         document.getElementsByClassName('copyright')[0].innerHTML = data;
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        });
+    </script>
+    <script>
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+    <script src="/animations/footer.js"></script>
 </body>
 
 </html>

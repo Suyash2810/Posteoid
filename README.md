@@ -48,9 +48,9 @@ When the user logs in, after validation of the login information a **token** is 
 
 Detailed error validation has also been done with display of messages to the user.
 
-First Image            |  Second Image
-:-------------------------:|:-------------------------:
-![Login](./public/img/readme_imgs/loginSS.png)  |  ![Login](./public/img/readme_imgs/loginSSS.png)
+Login Page Img1            |  Login Page Img2            |  Register Page
+:-------------------------:|:-------------------------:|:-------------------------:
+![Login](./public/img/readme_imgs/loginSS.png)  |  ![Login](./public/img/readme_imgs/loginSSS.png)  |  ![Login](./public/img/readme_imgs/RegisterSS.png)
 
 ### User Home Page
 
@@ -87,7 +87,7 @@ There is a comment section below the post where one can make comments on the pos
 >Following are the **features** of the Comment Panel.
 
 1. Anyone can comment on the post.
-2. The comment can also be deleted. Only the respective user can delete the comment. Others will not be allowed.
+2. The comment can also be deleted. Only the respective user can delete the comment. Others will not be allowed. See the images below the steps.
 3. The user image is automatically loaded from the database in the comment section.
 4. The feature for adding emojis to the comment has also been provided. Further using _colon_ symbol followed by emoticon name the sugesstions are given in the comment section. See the image **Emoji1** and **Emoji2** at the end.
 5. Any creator of a post would like to see the number of times the post has been viewed or the number of times the pdf has been download. Therefore a feature has been added which keeps a record of the **views** of a particular post and the **pdf downloads**. This information is _only_ displayed to the _user_. See the image below.
@@ -104,6 +104,15 @@ of downloads of the pdf. Only the creator can see this.
 ```
 
 ![Post](./public/img/readme_imgs/ViewSS.png)
+
+```
+The images below show the edit and delete pages for a particular post.
+```
+
+Edit Page         |  Delete Page
+:-------------------------:|:-------------------------:
+![Home](./public/img/readme_imgs/EditSS.png)  |  ![Home](./public/img/readme_imgs/DeleteSS.png)
+
 
 ### Create Post
 
